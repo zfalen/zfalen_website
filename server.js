@@ -105,8 +105,10 @@ router.route('/blog/:blog_id')
 // all of our routes will be prefixed with /blog
 app.use('/api', router);
 
+var port = process.env.PORT || 3000;
 
 
 
-app.listen(3000);
+
+app.listen(port);
 
