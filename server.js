@@ -5,9 +5,25 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var db = require('./model/db');
 var Blog = require('./model/blog');
+var passport = require('passport-local');
+var flash = require('connect-flash');
+
+var morgan= require('morgan');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 
 var app = express();
 
+app.use(morgan('dev'));
+app.use(cookieParser());
+
+// Passport Stuff
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+require('./routes/userRoutes')(app, passport); // load our routes and pass in our app and fully configured passport
 
 app.use(express.static('public'));
 
@@ -107,8 +123,6 @@ app.use('/api', router);
 
 var port = process.env.PORT || 3000;
 
-
-
-
 app.listen(port);
+console.log('The magic is happening on port ' + port)
 
