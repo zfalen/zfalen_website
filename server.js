@@ -3,8 +3,7 @@ var path = require('path');
 var http = require('http');
 var fs = require('fs');
 var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/blog");
+var db = require('./model/db');
 var Blog = require('./model/blog');
 
 var app = express();
