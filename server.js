@@ -5,7 +5,8 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var db = require('./model/db');
 var Blog = require('./model/blog');
-var passport = require('passport-local');
+var passportLocal = require('passport-local');
+var passport = require('passport');
 var flash = require('connect-flash');
 
 var morgan= require('morgan');
@@ -13,6 +14,9 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
 var app = express();
+
+require('./config/passport')(passport); // pass passport for configuration
+app.set('view engine', 'ejs'); // set up ejs for templatinga
 
 app.use(morgan('dev'));
 app.use(cookieParser());

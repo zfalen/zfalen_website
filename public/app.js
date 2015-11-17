@@ -106,11 +106,11 @@ var BlogBuilder = React.createClass({
                 <form onSubmit={this.handleSubmit}>
                   <div className="form-group">
                     <label>BLOG TITLE</label>
-                    <input type="text" className="form-control" placeholder="title goes here bitch" ref="newName" />
+                    <input type="text" className="form-control" placeholder="title goes here" ref="newName" />
                   </div>
                   <div className="form-group">
                     <label>BLOG CONTENT</label>
-                    <input type="text" className="form-control" placeholder="content goes here bitch" ref="newSubtitle" />
+                    <input type="text" className="form-control" placeholder="content goes here" ref="newSubtitle" />
                   </div>
                   <button type="submit" className="btn btn-default" value="Post">Submit</button>
                 </form>
@@ -128,8 +128,17 @@ var RenderBlogs = React.createClass({
             backgroundColor: '#3794bf'
         };
         var divStyle2 = {
-            marginTop: 50,
+            marginTop: 100,
             marginBottom: 50,
+        };
+        var divStyle3 = {
+            color: '#03A9F4',
+            fontWeight: 300
+        };
+        var divStyle4 = {
+            fontWeight: 900,
+            paddingLeft: 20,
+            paddingRight: 20
         };
         var containerStyle = {
             marginRight: 50
@@ -141,7 +150,7 @@ var RenderBlogs = React.createClass({
         <div>    
             <div className='container-fluid'>
                 <div className='container text-center' style={divStyle2}>
-                    <h1 className='well'> ZACH'S COOL ASS BLOG</h1>
+                    <h1><span style={divStyle3}>[</span><span style={divStyle4}>    BLOG    </span><span style={divStyle3}>]</span></h1>
                 </div>
                 <div className='container' style={divStyle}>
                     <div style={containerStyle}>
@@ -151,12 +160,13 @@ var RenderBlogs = React.createClass({
             </div>
             <div className='container-fluid'>
                 <div className='container text-center'>
-                    <h1 className='well'> SUBMIT A DAMN BLOG</h1>
+                    <h1> SUBMIT A BLOG</h1>
                 </div>
                 <div className='container'>
                     <div className={divStyle2}>
                         <BlogBuilder url='/api/blog/'/>
                     </div>
+                    <div style={divStyle2}/>
                 </div>
             </div>
         </div>
