@@ -106,11 +106,11 @@ var BlogBuilder = React.createClass({
                 <form onSubmit={this.handleSubmit}>
                   <div className="form-group">
                     <label>BLOG TITLE</label>
-                    <input type="text" className="form-control" placeholder="title goes here bitch" ref="newName" />
+                    <input type="text" className="form-control" placeholder="title goes here" ref="newName" />
                   </div>
                   <div className="form-group">
                     <label>BLOG CONTENT</label>
-                    <input type="text" className="form-control" placeholder="content goes here bitch" ref="newSubtitle" />
+                    <input type="text" className="form-control" placeholder="content goes here" ref="newSubtitle" />
                   </div>
                   <button type="submit" className="btn btn-default" value="Post">Submit</button>
                 </form>
@@ -151,7 +151,7 @@ var RenderBlogs = React.createClass({
             </div>
             <div className='container-fluid'>
                 <div className='container text-center'>
-                    <h1 className='well'> SUBMIT A DAMN BLOG</h1>
+                    <h1 className='well'> SUBMIT A BLOG</h1>
                 </div>
                 <div className='container'>
                     <div className={divStyle2}>
