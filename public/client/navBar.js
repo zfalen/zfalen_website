@@ -165,15 +165,6 @@ var NavBtn4 = React.createClass({
 
 var NavBar = React.createClass({
     
-    getInitialState: function(){
-        return {currentlyActive: "nav-btn-1"};
-    },
-
-    updateActive: function(btnId){
-        console.log('currentlyActive is now: ' + btnId);
-        this.setState({currentlyActive: btnId});
-    },
-    
     render: function(){
         return (
         <div>
@@ -191,10 +182,10 @@ var NavBar = React.createClass({
                 <div className="collapse navbar-collapse" id="nav-holder">
                   <ul className="nav navbar-nav" id="nav-btns">
 
-                    <NavBtn1 keyName="nav-btn-1" updateActive={this.updateActive} currentlyActive={this.state.currentlyActive}/>
-                    <NavBtn2 keyName="nav-btn-2" updateActive={this.updateActive} currentlyActive={this.state.currentlyActive}/>
-                    <NavBtn3 keyName="nav-btn-3" updateActive={this.updateActive} currentlyActive={this.state.currentlyActive}/>
-                    <NavBtn4 keyName="nav-btn-4" updateActive={this.updateActive} currentlyActive={this.state.currentlyActive}/>
+                    <NavBtn1 keyName="nav-btn-1" updateActive={this.props.updateActive} currentlyActive={this.props.currentlyActive}/>
+                    <NavBtn2 keyName="nav-btn-2" updateActive={this.props.updateActive} currentlyActive={this.props.currentlyActive}/>
+                    <NavBtn3 keyName="nav-btn-3" updateActive={this.props.updateActive} currentlyActive={this.props.currentlyActive}/>
+                    <NavBtn4 keyName="nav-btn-4" updateActive={this.props.updateActive} currentlyActive={this.props.currentlyActive}/>
 
                   </ul>
                 </div>
@@ -204,5 +195,3 @@ var NavBar = React.createClass({
         );
     }
 });
-
-React.render(<NavBar/>, document.getElementById('render-nav'));

@@ -173,5 +173,3 @@ var RenderBlogs = React.createClass({
         );
     }
 });
-
-React.render(<RenderBlogs url='/api/blog/'/>, document.getElementById('blog-list'));
