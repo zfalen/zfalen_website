@@ -167,3 +167,14 @@
     clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 80.5% 0%, 79% 1.5%, 77.5% 0%);
 }
 
+
+
+
+/*PROFILE WINDOW*/
+
+
+.profileText {
+    float: left;
+    padding-left: 20%;
+    text-align: left;
+}

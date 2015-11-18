@@ -1,38 +1,36 @@
 var RenderProfile = React.createClass({   
     render: function(){
-        var divStyle = {
-            marginTop: 50,
-            marginBottom: 50,
-            backgroundColor: '#3794bf'
-        };
-        var divStyle2 = {
+        
+        var titlePadding = {
             marginTop: 100,
             marginBottom: 50,
         };
-        var divStyle3 = {
-            color: '#03A9F4',
-            fontWeight: 300
-        };
-        var divStyle4 = {
+        
+        var headingStyle = {
             fontWeight: 900,
+            fontSize: 75,
             paddingLeft: 20,
             paddingRight: 20
         };
+        
         var containerStyle = {
             marginRight: 50
         };
-        var textStyle = {
-            color: '#f15922'
-        };
         
         return (
-        <div>    
-            <div className='container-fluid'>
-                <div className='container text-center' style={divStyle2}>
-                    <h1><span style={divStyle3}>[</span><span style={divStyle4}>    HELLO    </span><span style={divStyle3}>]</span></h1>
+            <div>    
+                <div className='container-fluid'>
+                    <div className='container text-center' style={titlePadding}>
+                        <h1 style={headingStyle}>    HELLO,    </h1>
+                    </div>
+
+                    <div className="container profileText">
+                        <p> I'm a digital marketer and entrepreneur, with an adrenaline habit and a knack for crafting creative content that people love. </p>
+                        <br/>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
                 </div>
             </div>
-        </div>
         )
     }
 });
