@@ -24,6 +24,17 @@ var RenderContact = React.createClass({
         var textStyle = {
             color: '#f15922'
         };
+        var titlePadding = {
+            paddingTop: 100,
+            marginBottom: 200,
+        };
+        
+        var headingStyle = {
+            fontWeight: 900,
+            fontSize: 75,
+            paddingLeft: 20,
+            paddingRight: 20
+        };
         
         return (
         <div>    
@@ -31,6 +42,10 @@ var RenderContact = React.createClass({
                 <div className='container text-center' style={divStyle2}>
                     <h1><span style={divStyle3}>[</span><span style={divStyle4}>    GET IN TOUCH    </span><span style={divStyle3}>]</span></h1>
                 </div>
+            </div>
+            
+            <div className='container text-center' style={titlePadding}>
+                <h1 style={headingStyle}>    COMING SOON    </h1>
             </div>
         </div>
         )
