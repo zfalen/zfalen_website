@@ -1,18 +1,22 @@
 var MyBlogs = React.createClass({
     render: function(){
+        var blogArray = [];
         var BlogData = this.props.data.map(function(BlogPost){
-            return (
-                <li className='well list-unstyled'> 
-                   <h2> {BlogPost.name} </h2>
-                    <p> {BlogPost.subtitle} </p>
-                </li>
-                );
+            blogArray.unshift({name: BlogPost.name, body: BlogPost.subtitle});
+        });
+        var blogsOrdered = blogArray.map(function(BlogPost){
+            return(
+            <li className='well list-unstyled blog-content'> 
+               <h1 className="blog-title"> {BlogPost.name} - </h1>
+                <div className="blog-body"> {BlogPost.body} </div>
+            </li>
+            )
         });
                                             
             return(
                 <div>
                     <ul>
-                        {BlogData}
+                        {blogsOrdered}
                     </ul>
                 </div>
             );
@@ -152,10 +156,8 @@ var RenderBlogs = React.createClass({
                 <div className='container text-center' style={divStyle2}>
                     <h1><span style={divStyle3}>[</span><span style={divStyle4}>    BLOG    </span><span style={divStyle3}>]</span></h1>
                 </div>
-                <div className='container' style={divStyle}>
-                    <div style={containerStyle}>
-                        <BlogBox url='/api/blog/' pollInterval={2000}/>
-                    </div>
+                <div style={containerStyle}>
+                    <BlogBox url='/api/blog/' pollInterval={2000}/>
                 </div>
             </div>
             <div className='container-fluid'>

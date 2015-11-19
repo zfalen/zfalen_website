@@ -398,6 +398,25 @@
 }
 
 
+/*BLOG PAGE*/
+
+.blog-content {
+    text-align: left;
+    padding-left: 75px;
+}
+
+.blog-title {
+}
+
+.blog-body {
+    padding-left: 25px;
+}
+
+
+
+
+
+
 /*FOOTER*/
 
 .socialBtn-active {
