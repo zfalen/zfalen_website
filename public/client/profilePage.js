@@ -11,7 +11,8 @@ var Profile = React.createClass({
                     <div className="row">
                         <div className="col-md-12 profileSummary-profileText">
                             <p><strong>Founder</strong>&nbsp;- Bloom Content &nbsp; &nbsp; // &nbsp; &nbsp; <strong>MKTG Consultant</strong>&nbsp;- Blackstone Launchpad</p><br/>
-                            <p><strong><u>Location</u>:</strong>&nbsp; &nbsp; Missoula, MT &nbsp; &nbsp; // &nbsp; &nbsp; University of Montana</p>
+                            <p><strong><u>Location</u>:</strong>&nbsp; &nbsp; University of Montana &nbsp; &nbsp; // &nbsp; &nbsp; Missoula, MT </p>
+                            <p><strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  BA</strong>&nbsp;- &nbsp; Marketing &nbsp; &nbsp; <strong>Minor</strong>&nbsp;- &nbsp; Media Arts</p><br/>
                             <p><strong><u>Interests</u>:</strong>&nbsp; &nbsp; Skiing &nbsp; // &nbsp; Fly Fishing &nbsp; // &nbsp; Kayaking &nbsp; // &nbsp; Backpacking &nbsp; // &nbsp; Creating </p>
                         </div>
                     </div>
