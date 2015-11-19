@@ -48,6 +48,36 @@ var ContentWindow4 = React.createClass({
 });
 
 
+var Footer = React.createClass({
+    
+    render: function(){
+        var footerStyle = {
+            backgroundColor: 'rgb(32, 32, 32)',
+            width: '100%',
+            height: 150,
+            position: 'relative'
+        }
+        
+        return(
+        <div style={footerStyle}>
+            <div className="container text-center marginTop-10">
+                <div className="col-md-2 col-md-offset-2">
+                    <i className="fa fa-instagram fa-3x profileSummary-controlBtn-inactive"></i>
+                </div>
+                <div className="col-md-2">
+                    <i className="fa fa-twitter fa-3x profileSummary-controlBtn-inactive"></i>
+                </div>
+                <div className="col-md-2">
+                    <i className="fa fa-vimeo fa-3x profileSummary-controlBtn-inactive"></i>
+                </div>
+                <div className="col-md-2">
+                    <i className="fa fa-linkedin fa-3x profileSummary-controlBtn-inactive"></i>
+                </div>
+            </div>
+        </div>
+        )
+    }
+});
 
 
 var MainWindow = React.createClass({
@@ -81,6 +111,7 @@ var MainWindow = React.createClass({
                 {showContent3}
                 {showContent4}
             </div>
+            <Footer/>
         </div>
         );
     }
