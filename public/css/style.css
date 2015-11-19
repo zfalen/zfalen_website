@@ -12,6 +12,12 @@
     margin-bottom: 40px
 }
 
+.vertical-center {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+}
+
 
 /*MAIN HEADER*/
 
@@ -290,6 +296,41 @@
     z-index: 2; 
     top: 20%;
 }
+
+
+.profileSummary-twitterStatus {
+    position: relative;
+    float: left;
+    color: #f9f9f9;
+    text-align: left;
+    font-weight: 300;
+}
+
+.profileSummary-twitterDate {
+    position: relative;
+    float: left;
+    color: #aaa;
+    text-align: left;
+    font-weight: 800;
+}
+
+.profileSummary-twitterIcon {
+    padding: 15px;
+    background-color: rgba(249, 249, 249, .75);
+}
+
+.profileSummary-twitterIcon-inactive {
+    color: rgb(32, 32, 32);
+}
+
+.profileSummary-twitterIcon-active {
+    color: #f9f9f9;
+}
+
+.profileSummary-twitterStatusHolder {
+    margin-top: 10%
+}
+
 
 #profileSummary-skillsColumn1 {
     padding-right: 2.5%

@@ -12,12 +12,33 @@ var Profile = React.createClass({
 });
 
 var Twitter = React.createClass({
+    
+    getInitialState: function(){
+        return({hoverClass: "profileSummary-twitterIcon-inactive"})
+    },
+    
+    handleMouseEnter: function(stateToChange){
+        this.setState({[stateToChange]: "profileSummary-twitterIcon-active"})
+    },
+    
+    handleMouseLeave: function(stateToChange){
+        this.setState({[stateToChange]: "profileSummary-twitterIcon-inactive"})
+    },
    
     render: function(){
         return(
             <div className="container" id='profileSummary-twitterHolder'>
-                <div className="col-md-6 col-md-offset-6">
-                    <h2 className="profileSummary-sectionTitle">TWITTER GOES HERE \\</h2>
+                <div className="col-md-7 col-md-offset-6">
+                    <div className="row vertical-center profileSummary-twitterStatusHolder">
+                        <div className="col-md-4">
+                            <a href="https://twitter.com/zfalen" target="_blank" onMouseEnter={this.handleMouseEnter.bind(this, 'hoverClass')} onMouseLeave={this.handleMouseLeave.bind(this, 'hoverClass')}>
+                                <i className={"fa fa-twitter fa-5x profileSummary-twitterIcon " + this.state.hoverClass}></i>
+                            </a>
+                        </div>
+                        <div className="col-md-8">
+                            <TweetBox url='/api/handle/'/>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
