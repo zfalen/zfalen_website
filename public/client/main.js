@@ -1,9 +1,13 @@
 var ContentWindow1 = React.createClass({
    
     render: function(){
+        var padding = {
+            marginBottom: 150
+        }
         return(
             <div id="content-holder-1" align='center'>
                 <RenderProfile/>
+                <div style={padding}></div>
             </div>
         )
     }
