@@ -50,6 +50,18 @@ var ContentWindow4 = React.createClass({
 
 var Footer = React.createClass({
     
+    getInitialState: function(){
+        return({IgHoverClass: "socialBtn-inactive", TwitterHoverClass: "socialBtn-inactive", VimeoHoverClass: "socialBtn-inactive", LiHoverClass: "socialBtn-inactive"})
+    },
+    
+    handleMouseEnter: function(stateToChange){
+        this.setState({[stateToChange]: "socialBtn-active"})
+    },
+    
+    handleMouseLeave: function(stateToChange){
+        this.setState({[stateToChange]: "socialBtn-inactive"})
+    },
+    
     render: function(){
         var footerStyle = {
             backgroundColor: 'rgb(32, 32, 32)',
@@ -60,18 +72,26 @@ var Footer = React.createClass({
         
         return(
         <div style={footerStyle}>
-            <div className="container text-center marginTop-10">
+            <div className="container text-center paddingTop-4">
                 <div className="col-md-2 col-md-offset-2">
-                    <i className="fa fa-instagram fa-3x profileSummary-controlBtn-inactive"></i>
+                    <a href="https://instagram.com/mtfreeski" onMouseEnter={this.handleMouseEnter.bind(this, 'IgHoverClass')} onMouseLeave={this.handleMouseLeave.bind(this, 'IgHoverClass')}>
+                        <i className={"fa fa-instagram fa-3x " + this.state.IgHoverClass}></i>
+                    </a>
                 </div>
                 <div className="col-md-2">
-                    <i className="fa fa-twitter fa-3x profileSummary-controlBtn-inactive"></i>
+                    <a href="https://twitter.com/zfalen" onMouseEnter={this.handleMouseEnter.bind(this, 'TwitterHoverClass')} onMouseLeave={this.handleMouseLeave.bind(this, 'TwitterHoverClass')}>
+                        <i className={"fa fa-twitter fa-3x " + this.state.TwitterHoverClass}></i>
+                    </a>
                 </div>
                 <div className="col-md-2">
-                    <i className="fa fa-vimeo fa-3x profileSummary-controlBtn-inactive"></i>
+                    <a href="https://vimeo.com/mtfreeski" onMouseEnter={this.handleMouseEnter.bind(this, 'VimeoHoverClass')} onMouseLeave={this.handleMouseLeave.bind(this, 'VimeoHoverClass')}>
+                        <i className={"fa fa-vimeo fa-3x " + this.state.VimeoHoverClass}></i>
+                    </a>
                 </div>
                 <div className="col-md-2">
-                    <i className="fa fa-linkedin fa-3x profileSummary-controlBtn-inactive"></i>
+                    <a href="https://www.linkedin.com/in/zachary-falen-8882865b" onMouseEnter={this.handleMouseEnter.bind(this, 'LiHoverClass')} onMouseLeave={this.handleMouseLeave.bind(this, 'LiHoverClass')}>
+                        <i className={"fa fa-linkedin fa-3x " + this.state.LiHoverClass}></i>
+                    </a>
                 </div>
             </div>
         </div>

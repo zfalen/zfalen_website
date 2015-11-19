@@ -4,7 +4,7 @@
     top: 25%
 }
 
-.marginTop-10{
+.paddingTop-4{
     padding-top: 4%
 }
 
@@ -322,5 +322,16 @@
 
 .profileSummary-skillsBar15 {
 	width: 15%;
+}
+
+
+/*FOOTER*/
+
+.socialBtn-active {
+    color: #f9f9f9;
+}
+
+.socialBtn-inactive {
+     color: #aaa;
 }
 
