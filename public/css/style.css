@@ -1,3 +1,16 @@
+/*SIZING & SPACING*/
+
+.top-25{
+    top: 25%
+}
+
+.spacer-40px{
+    margin-bottom: 40px
+}
+
+
+/*MAIN HEADER*/
+
 #site-title-holder {
 	width: 375px; 
     height: 100px; 
@@ -122,7 +135,7 @@
     -moz-box-shadow: 1px 3px 8px 3px rgba(0,0,0,0.5);
     box-shadow: 1px 3px 8px 3px rgba(0,0,0,0.5);
 
-    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 22.5% 0%, 21% 3.5%, 19.5% 0%);
+    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 22.5% 0%, 21% 1.5%, 19.5% 0%);
     clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 22.5% 0%, 21% 1.5%, 19.5% 0%);
 }
 
@@ -170,11 +183,139 @@
 
 
 
-/*PROFILE WINDOW*/
 
+/*PROFILE WINDOW -- GLOBAL*/
 
 .profileText {
     float: left;
     padding-left: 20%;
     text-align: left;
 }
+
+
+/*PROFILE WINDOW -- PROFILE SUMMARY*/
+
+#profileSummary-holder {
+    position: relative; 
+    width: 100%;
+}
+
+#profileSummary-backgroundHolder-outer{
+    height: 375px;
+}
+
+#profileSummary-backgroundHolder-inner{
+    position: relative; 
+    width: 100%; 
+    height: 100%
+}
+
+#profileSummary-backgroundHolder-overlay {
+	width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    z-index: 1;
+    background:  -moz-linear-gradient(-45deg, rgba(3,169,244,0.65) 42%, rgba(3,140,240,0.85) 78%, rgba(3,128,238,0.88) 94%, rgba(3,123,237,0.9) 100%);
+    background: -webkit-linear-gradient(-45deg, rgba(3,169,244,0.65) 42%,rgba(3,140,240,0.85) 78%,rgba(3,128,238,0.88) 94%,rgba(3,123,237,0.9) 100%);
+    background: linear-gradient(135deg, rgba(3,169,244,0.65) 42%,rgba(3,140,240,0.85) 78%,rgba(3,128,238,0.88) 94%,rgba(3,123,237,0.9) 100%);
+}
+
+#profileSummary-backgroundHolder-img {
+	background-image: url('../img/koot_partyTrain.png'); 
+    background-position-y: 60%; 
+    height: 100%; 
+    width: 100%; 
+    z-index: 0; 
+    position: absolute; 
+    top:0px; 
+    left:0px
+}
+
+
+#profileSummary-headshot {
+	width: 25%; 
+    position: absolute; 
+    z-index: 2; 
+    top: -10%; 
+    left: 10%;
+}
+
+
+
+.profileSummary-sectionTitle {
+	margin-left: -10px; 
+    color: #fff
+}
+
+
+
+
+#profileSummary-controlBar {
+	height: 50px; 
+    width: 100%; 
+    z-index: 1;
+    position: relative; 
+    background-color: rgb(32, 32, 32);
+}
+
+.profileSummary-controlBtn-inactive {
+    color: #aaa;
+}
+
+.profileSummary-controlBtn-active {
+    color: #f9f9f9;
+}
+
+
+
+#profileSummary-skillsHolder{
+    position: absolute; 
+    z-index: 2; 
+    top: 20%;
+}
+
+#profileSummary-skillsColumn1 {
+    padding-right: 2.5%
+}
+
+#profileSummary-skillsColumn2 {
+    padding-left: 2.5%
+}
+
+.profileSummary-skillsBarIndicator-right {
+	right: -30px; 
+    color: #fff !important; 
+    position: absolute;
+}
+
+.profileSummary-skillsBarIndicator-left {
+	right: -15px;
+    color: #fff !important; 
+    position: absolute;
+}
+
+.profileSummary-skillsTitle {
+	color: #fff
+}
+
+.profileSummary-skillsBar {
+	margin-left: 10px; 
+    background-color: rgba(249, 249, 249, .75);
+}
+
+.profileSummary-skillsBarInner {
+    background-color: #202020;
+}
+
+.profileSummary-skillsBar30 {
+	width: 30%;
+}
+
+.profileSummary-skillsBar25 {
+	width: 25%;
+}
+
+.profileSummary-skillsBar15 {
+	width: 15%;
+}
+

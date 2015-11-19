@@ -8,6 +8,7 @@ var ContentWindow1 = React.createClass({
             <div id="content-holder-1" align='center'>
                 <RenderProfile/>
                 <div style={padding}></div>
+                <ProfileSummary/>
             </div>
         )
     }
