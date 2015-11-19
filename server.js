@@ -7,9 +7,13 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var db = require('./model/db');
 var Blog = require('./model/blog');
+var Comment = require('./model/comment');
 var passportLocal = require('passport-local');
 var passport = require('passport');
 var flash = require('connect-flash');
+
+var mongoose     = require('mongoose');
+var Schema       = mongoose.Schema;
 
 var morgan= require('morgan');
 var cookieParser = require('cookie-parser');
@@ -111,19 +115,18 @@ router.route('/blog')
     })
 
     .get(function(req, res) {
-        Blog.find(function(err, blog) {
+        Blog.find({}).populate('comments').exec(function(err, blog) {
             if (err)
                 res.send(err);
 
             res.json(blog);
-        });
-    
+        });  
     })
 
 router.route('/blog/:blog_id')
 
     .get(function(req, res) {
-        Blog.find(function(err, blog) {
+        Blog.findById(req.params.blog_id, function(err, blog) {
             if (err)
                 res.send(err);
 
@@ -162,6 +165,52 @@ router.route('/blog/:blog_id')
             res.json({ message: 'Successfully deleted' });
         })
     })
+
+
+router.route('/blog/:blog_id/comment')
+    
+    .post(function(req, res){
+        mongoose.model('Comment').create({
+            body: req.body.body,
+            user: req.body.user
+            
+        }, function(err, comment){
+            if (err){
+                res.send(err)
+            } else {
+                mongoose.model('Blog').findById({
+                    _id: req.params.blog_id
+                }, function(err, blog){
+                    if(err){
+                        res.send(err)
+                    } else {
+                        blog.comments.push(comment._id);
+                        blog.save();
+                        res.send(comment);
+                        }
+            })}
+        })   
+    })
+
+    .get(function(req, res) {
+        mongoose.model('Blog').findById({
+                        _id: req.params.blog_id
+                    }, function(err, blog){
+                        if(err){
+                            res.send(err)
+                        } else {
+                            mongoose.model('Comment').find(function(err, comments) {
+                                if (err)
+                                    res.send(err);
+
+                                res.json(comments);
+                            })
+                        }
+        })
+    
+    })
+
+
         
     
 

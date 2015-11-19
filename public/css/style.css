@@ -18,6 +18,12 @@
   align-items: center;
 }
 
+.align-top {
+  min-height: 100%;
+  display: flex;
+  align-items: top;
+}
+
 
 /*MAIN HEADER*/
 
@@ -406,6 +412,11 @@
 }
 
 .blog-title {
+    font-size: 75px;
+}
+
+.blog-subtitle {
+    font-weight: 200
 }
 
 .blog-body {

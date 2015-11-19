@@ -2,14 +2,35 @@ var MyBlogs = React.createClass({
     render: function(){
         var blogArray = [];
         var BlogData = this.props.data.map(function(BlogPost){
-            blogArray.unshift({name: BlogPost.name, body: BlogPost.subtitle});
+            blogArray.unshift({name: BlogPost.name, subtitle: BlogPost.subtitle, body: BlogPost.body, img: BlogPost.img, comments: BlogPost.comments, date: BlogPost.date});
         });
         var blogsOrdered = blogArray.map(function(BlogPost){
+            console.log(BlogPost);
+            var showComments = BlogPost.comments.map(function(comment){
+                console.log(comment);
+                return(
+                    <li>
+                        <h5>{comment.user}</h5>
+                        <p>{comment.body}</p>
+                    </li>
+                )
+            })
             return(
-            <li className='well list-unstyled blog-content'> 
-               <h1 className="blog-title"> {BlogPost.name} - </h1>
-                <div className="blog-body"> {BlogPost.body} </div>
-            </li>
+                <li className='well list-unstyled blog-content row'> 
+                    <div className="row align-top">
+                        <div className="col-md-3">
+                            <img src="img/headshot1.jpg" className="img-responsive thumbnail"></img>
+                        </div>
+                        <div className="col-md-9">
+                            <h1 className="blog-title"> {BlogPost.name}</h1>
+                            <h1 className="blog-subtitle">{BlogPost.subtitle}</h1>
+                        </div>
+                    </div>
+                    <div className="blog-body"> </div>
+                    <div className="blog-comments">
+                        <ul>{showComments}</ul>
+                    </div>
+                </li>
             )
         });
                                             
