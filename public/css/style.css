@@ -273,6 +273,18 @@
 
 
 
+#profileSummary-profileHolder{
+    position: absolute; 
+    z-index: 2; 
+    top: 20%;
+}
+
+#profileSummary-twitterHolder{
+    position: absolute; 
+    z-index: 2; 
+    top: 20%;
+}
+
 #profileSummary-skillsHolder{
     position: absolute; 
     z-index: 2; 

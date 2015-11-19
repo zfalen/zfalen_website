@@ -1,20 +1,33 @@
-var ProfileSummary = React.createClass({
+var Profile = React.createClass({
+   
     render: function(){
         return(
-        <div id="profileSummary-holder">
-            <img src="img/headshot1.jpg" className="img-responsive thumbnail" id="profileSummary-headshot"></img>
-            <div id="profileSummary-controlBar">
-                <div className="col-md-1 col-md-offset-5 top-25">
-                    <i className="fa fa-user fa-2x profileSummary-controlBtn-inactive"></i>
-                </div>
-                <div className="col-md-1 top-25">
-                    <i className="fa fa-twitter fa-2x profileSummary-controlBtn-inactive"></i>
-                </div>
-                <div className="col-md-1 top-25">
-                    <i className="fa fa-cogs fa-2x profileSummary-controlBtn-active"></i>
+            <div className="container" id='profileSummary-profileHolder'>
+                <div className="col-md-6 col-md-offset-6">
+                    <h2 className="profileSummary-sectionTitle">PROFILE GOES HERE \\</h2>
                 </div>
             </div>
+        )
+    }
+});
+
+var Twitter = React.createClass({
+   
+    render: function(){
+        return(
+            <div className="container" id='profileSummary-twitterHolder'>
+                <div className="col-md-6 col-md-offset-6">
+                    <h2 className="profileSummary-sectionTitle">TWITTER GOES HERE \\</h2>
+                </div>
+            </div>
+        )
+    }
+});
+
+var Skills = React.createClass({
     
+    render: function(){
+        return(
             <div className="container" id="profileSummary-skillsHolder">
                 <div className="col-md-6 col-md-offset-6"><h2 className="profileSummary-sectionTitle">EXPERIENCE \\</h2></div>
                 <div className="col-md-3 col-md-offset-6" id="profileSummary-skillsColumn1">
@@ -61,6 +74,75 @@ var ProfileSummary = React.createClass({
                     </div>
                 </div>
             </div>
+        )
+    }
+});
+
+var ControlBar = React.createClass({
+    
+    render: function(){
+        return(
+            <div id="profileSummary-controlBar">
+                <div className="col-md-1 col-md-offset-5 top-25">
+                    <a onClick={this.props.handleClick.bind(this, "Profile")}>
+                        <i className={"fa fa-user fa-2x " + this.props.profileClass}></i>
+                    </a>
+                </div>
+                <div className="col-md-1 top-25">
+                    <a onClick={this.props.handleClick.bind(this, "Twitter")}>
+                        <i className={"fa fa-twitter fa-2x " + this.props.twitterClass}></i>
+                    </a>
+                </div>
+                <div className="col-md-1 top-25">
+                    <a onClick={this.props.handleClick.bind(this, "Skills")}>
+                        <i className={"fa fa-cogs fa-2x " + this.props.skillsClass}></i>
+                    </a>
+                </div>
+            </div>
+        )
+    }
+});
+
+
+
+var ProfileSummary = React.createClass({
+    
+    getInitialState: function(){
+        return({showProfile: true, ProfileClass: 'profileSummary-controlBtn-active',  showTwitter: false, TwitterClass: 'profileSummary-controlBtn-inactive', showSkills: false, SkillsClass: 'profileSummary-controlBtn-inactive', activeNow: 'Profile'})
+    },
+    
+    handleClick: function(stateToChange){
+        var stateClass = stateToChange + "Class";
+        var showState = "show" + stateToChange;
+        var activeState = "show" + this.state.activeNow;
+        var activeClass = this.state.activeNow + "Class";
+        
+        if (this.state.stateToChange != this.state.activeNow){
+                this.setState({[activeState]: false})
+                this.setState({[showState]: true});
+            
+                this.setState({[activeClass]: "profileSummary-controlBtn-inactive"});  
+                this.setState({[stateClass]: "profileSummary-controlBtn-active"});
+            
+                this.setState({activeNow: [stateToChange]});
+        } else {
+            return
+        };
+        console.log(this.state.activeNow);
+    },
+    
+    render: function(){
+        var showProfile = (this.state.showProfile) ? <Profile/> : null;
+        var showTwitter = (this.state.showTwitter) ? <Twitter/> : null;
+        var showSkills = (this.state.showSkills) ? <Skills/> : null;
+        return(
+        <div id="profileSummary-holder">
+            <img src="img/headshot1.jpg" className="img-responsive thumbnail" id="profileSummary-headshot"></img>
+            <ControlBar handleClick={this.handleClick} profileClass={this.state.ProfileClass} twitterClass={this.state.TwitterClass} skillsClass={this.state.SkillsClass}/>
+            
+            {showProfile}
+            {showTwitter}
+            {showSkills}
     
             <div id="profileSummary-backgroundHolder-outer">
                 <div id="profileSummary-backgroundHolder-inner">
