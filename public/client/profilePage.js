@@ -1,10 +1,20 @@
 var Profile = React.createClass({
    
     render: function(){
+        var slashStyle = {
+            fontWeight: 200
+        }
         return(
             <div className="container" id='profileSummary-profileHolder'>
                 <div className="col-md-6 col-md-offset-6">
-                    <h2 className="profileSummary-sectionTitle">PROFILE GOES HERE \\</h2>
+                    <h2 className="profileSummary-sectionTitle"><span style={slashStyle}>// </span>ZACHARY &thinsp; M. &thinsp; FALEN </h2>
+                    <div className="row">
+                        <div className="col-md-12 profileSummary-profileText">
+                            <p><strong>Founder</strong>&nbsp;- Bloom Content &nbsp; &nbsp; // &nbsp; &nbsp; <strong>MKTG Consultant</strong>&nbsp;- Blackstone Launchpad</p><br/>
+                            <p><strong><u>Location</u>:</strong>&nbsp; &nbsp; Missoula, MT &nbsp; &nbsp; // &nbsp; &nbsp; University of Montana</p>
+                            <p><strong><u>Interests</u>:</strong>&nbsp; &nbsp; Skiing &nbsp; // &nbsp; Fly Fishing &nbsp; // &nbsp; Kayaking &nbsp; // &nbsp; Backpacking &nbsp; // &nbsp; Creating </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
@@ -26,16 +36,24 @@ var Twitter = React.createClass({
     },
    
     render: function(){
+        var slashStyle = {
+            fontWeight: 200
+        }
+        var atStyle = {
+            fontWeight: 100,
+            fontSize: 25
+        }
         return(
             <div className="container" id='profileSummary-twitterHolder'>
                 <div className="col-md-7 col-md-offset-6">
+                    <div className="col-md-6"><h2 className="profileSummary-sectionTitle"><span style={slashStyle}>//  <span style={atStyle}>@</span></span>Zfalen </h2></div>
                     <div className="row vertical-center profileSummary-twitterStatusHolder">
                         <div className="col-md-4">
                             <a href="https://twitter.com/zfalen" target="_blank" onMouseEnter={this.handleMouseEnter.bind(this, 'hoverClass')} onMouseLeave={this.handleMouseLeave.bind(this, 'hoverClass')}>
                                 <i className={"fa fa-twitter fa-5x profileSummary-twitterIcon " + this.state.hoverClass}></i>
                             </a>
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-md-8" id="profileSummary-tweetBox">
                             <TweetBox url='/api/handle/'/>
                         </div>
                     </div>
@@ -48,9 +66,12 @@ var Twitter = React.createClass({
 var Skills = React.createClass({
     
     render: function(){
+        var slashStyle = {
+            fontWeight: 200
+        }
         return(
             <div className="container" id="profileSummary-skillsHolder">
-                <div className="col-md-6 col-md-offset-6"><h2 className="profileSummary-sectionTitle">EXPERIENCE \\</h2></div>
+                <div className="col-md-6 col-md-offset-6"><h2 className="profileSummary-sectionTitle"><span style={slashStyle}>// </span>EXPERIENCE </h2></div>
                 <div className="col-md-3 col-md-offset-6" id="profileSummary-skillsColumn1">
                     <div>
                         <h6 className="profileSummary-skillsTitle">DIGITAL MARKETING</h6>

@@ -211,7 +211,7 @@
 }
 
 #profileSummary-backgroundHolder-outer{
-    height: 375px;
+    height: 400px;
 }
 
 #profileSummary-backgroundHolder-inner{
@@ -231,8 +231,14 @@
 }
 
 #profileSummary-backgroundHolder-img {
-	background-image: url('../img/koot_partyTrain.png'); 
-    background-position-y: 60%; 
+	background-image: repeating-linear-gradient(
+  135deg,
+  rgba(0, 0, 0, 0.3),
+  rgba(0, 0, 0, 0.3) 1px,
+  rgba(0, 0, 0, 0.1) 1px,
+  rgba(0, 0, 0, 0.1) 5px
+), url('../img/koot_partyTrain.png'); 
+    background-position-y: 61.5%; 
     height: 100%; 
     width: 100%; 
     z-index: 0; 
@@ -247,7 +253,10 @@
     position: absolute; 
     z-index: 2; 
     top: -10%; 
-    left: 10%;
+    left: 12%;
+    -webkit-box-shadow: 3px 4px 3px 1px rgba(0,0,0,0.1);
+    -moz-box-shadow: 3px 4px 3px 1px rgba(0,0,0,0.1);
+    box-shadow: 3px 4px 3px 1px rgba(0,0,0,0.1);
 }
 
 
@@ -291,10 +300,21 @@
     top: 20%;
 }
 
+#profileSummary-tweetBox{
+    margin-left: -40px
+}
+
 #profileSummary-skillsHolder{
     position: absolute; 
     z-index: 2; 
     top: 20%;
+}
+
+
+.profileSummary-profileText{
+    text-align: left;
+    margin-left: 10px;
+    color: #f9f9f9;
 }
 
 
@@ -324,7 +344,7 @@
 }
 
 .profileSummary-twitterIcon-active {
-    color: #f9f9f9;
+    color: #03A9F4;
 }
 
 .profileSummary-twitterStatusHolder {
