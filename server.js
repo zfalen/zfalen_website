@@ -98,21 +98,23 @@ app.get('/', function(req, res){
 });
 
 router.route('/blog')
-    .post(function(req, res) {
-        
-        var blog = new Blog();
-        blog.name = req.body.name;
-        blog.subtitle = req.body.subtitle;
-        blog.postDate = req.body.postDate;
 
-        blog.save(function(err) {
-            if (err)
-                res.send(err);
-
-            res.json(blog);
-        });
-        
-    })
+    .post(function(req, res){
+        mongoose.model('Blog').create({
+            name: req.body.name,
+            subtitle: req.body.subtitle,
+            body: req.body.content
+            
+        }, function(err, blog){
+            if (err){
+                res.send(err)
+            } else {
+                blog.save();
+                res.send(blog);
+                }
+            
+            }
+        )})
 
     .get(function(req, res) {
         Blog.find({}).populate('comments').exec(function(err, blog) {

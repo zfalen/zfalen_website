@@ -235,14 +235,15 @@ var BlogBox = React.createClass({
 
 var BlogBuilder = React.createClass({
     handleSubmit: function(e) {
-        console.log("HI DOUG");
         e.preventDefault();
         var blogName = React.findDOMNode(this.refs.newName).value.trim();
         var blogSubtitle = React.findDOMNode(this.refs.newSubtitle).value.trim();
+        var blogBody = React.findDOMNode(this.refs.newBody).value.trim();
+        console.log();
        
-        var data = ({name: blogName, subtitle: blogSubtitle});
+        var data = ({name: blogName, subtitle: blogSubtitle, content: blogBody});
     
-        if (!blogName || !blogSubtitle) {
+        if (!blogName || !blogSubtitle || !blogBody) {
           return;
         };
         
@@ -250,7 +251,7 @@ var BlogBuilder = React.createClass({
           url: this.props.url,
           dataType: 'json',
           type: 'POST',
-          data:data,
+          data: data,
           success: function(data) {
             console.log(data);
           }.bind(this),
@@ -262,6 +263,7 @@ var BlogBuilder = React.createClass({
         // TODO: send request to the server
         React.findDOMNode(this.refs.newName).value = '';
         React.findDOMNode(this.refs.newSubtitle).value = '';
+        React.findDOMNode(this.refs.newBody).value = '';
         return;
   },
     
@@ -280,8 +282,12 @@ var BlogBuilder = React.createClass({
                     <input type="text" className="form-control" placeholder="title goes here" ref="newName" />
                   </div>
                   <div className="form-group">
+                    <label>BLOG SUBTITLE</label>
+                    <input type="text" className="form-control" placeholder="subtitle goes here" ref="newSubtitle" />
+                  </div>
+                  <div className="form-group">
                     <label>BLOG CONTENT</label>
-                    <input type="text" className="form-control" placeholder="content goes here" ref="newSubtitle" />
+                    <textarea type="text" className="form-control" placeholder="content goes here" ref="newBody" />
                   </div>
                   <button type="submit" className="btn btn-default" value="Post">Submit</button>
                 </form>

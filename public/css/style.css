@@ -151,8 +151,8 @@
     -moz-box-shadow: 1px 3px 8px 3px rgba(0,0,0,0.5);
     box-shadow: 1px 3px 8px 3px rgba(0,0,0,0.5);
 
-    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 22.5% 0%, 21% 1.5%, 19.5% 0%);
-    clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 22.5% 0%, 21% 1.5%, 19.5% 0%);
+    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 22.5% 0%, 21% 20px, 19.5% 0%);
+    clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 22.5% 0%, 21% 20px, 19.5% 0%);
 }
 
 #content-holder-2 {
@@ -165,8 +165,8 @@
     -moz-box-shadow: 1px 3px 8px 3px rgba(0,0,0,0.5);
     box-shadow: 1px 3px 8px 3px rgba(0,0,0,0.5);
 
-    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 41.75% 0%, 40.25% 1.5%, 38.75% 0%);
-    clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 41.75% 0%, 40.25% 1.5%, 38.75% 0%);
+    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 41.75% 0%, 40.25% 20px, 38.75% 0%);
+    clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 41.75% 0%, 40.25% 20px, 38.75% 0%);
 }
 
 #content-holder-3 {
@@ -178,8 +178,8 @@
     -moz-box-shadow: 1px 3px 8px 3px rgba(0,0,0,0.5);
     box-shadow: 1px 3px 8px 3px rgba(0,0,0,0.5);
 
-    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 61.25% 0%, 59.75% 1.5%, 58.25% 0%);
-    clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 61.25% 0%, 59.75% 1.5%, 58.25% 0%);
+    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 61.25% 0%, 59.75% 20px, 58.25% 0%);
+    clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 61.25% 0%, 59.75% 20px, 58.25% 0%);
 }
 
 #content-holder-4 {
@@ -192,8 +192,8 @@
     -moz-box-shadow: 1px 3px 8px 3px rgba(0,0,0,0.5);
     box-shadow: 1px 3px 8px 3px rgba(0,0,0,0.5);
 
-    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 80.5% 0%, 79% 1.5%, 77.5% 0%);
-    clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 80.5% 0%, 79% 1.5%, 77.5% 0%);
+    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 80.5% 0%, 79% 20px, 77.5% 0%);
+    clip-path: polygon(0% 0%, 0% 100%, 100% 99%, 100% 0%, 80.5% 0%, 79% 20px, 77.5% 0%);
 }
 
 

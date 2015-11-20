@@ -11,5 +11,4 @@ var BlogSchema   = new Schema({
     date: { type: Date, default: Date.now }
 });
 
-BlogSchema.index({title: 'text', body: 'text' }, function(error) {});
 module.exports = mongoose.model('Blog', BlogSchema);
