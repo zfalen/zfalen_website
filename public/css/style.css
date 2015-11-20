@@ -442,6 +442,14 @@
     padding-top: 7px;
 }
 
+.blogComment-separator {
+    height: 1px;
+    width: 80%;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    background-color: rgba(3, 169, 244, 0.15);
+}
+
 
 
 

@@ -43,12 +43,17 @@ var PostComment = React.createClass({
             marginLeft: '2%'
         }
         var commentStyle = {
-            width: '98%',
+            maxWidth: '98%',
             marginLeft: '2%'
         }
         
         var submitStyle = {
-            float: 'right'
+            float: 'right',
+            marginRight: 10,
+            color: '#fff',
+            backgroundColor: '#0385F4',
+            borderColor: '#036FF4'
+            
         }
         
         var formStyle = {
@@ -56,18 +61,24 @@ var PostComment = React.createClass({
         }
         
         return(
-            <div className="well" style={commentBoxStyle}>
+             <div>
                 <div className="blog-commentsCounter">
-                    <h3 className="blog-commentsCounterText"> 8 Comments </h3>
+                    <h3 className="blog-commentsCounterText"> {this.props.numComments} Comments </h3>
                 </div>
                 <form style={formStyle} onSubmit={this.handleSubmit}>
                   <div className="form-group">
-                    <input style={userStyle} type="text" className="form-control" placeholder="Username" ref="commentUser" />
+                    <div className="input-group" style={userStyle}>
+                        <div className="input-group-addon"><i className="fa fa-user"/></div>
+                        <input type="text" className="form-control" placeholder="Username" ref="commentUser" />
+                    </div>
                   </div>
                   <div className="form-group">
-                    <input style={commentStyle} type="text" className="form-control" placeholder="Comment...." ref="commentBody" />
+                    <div className="input-group" style={commentStyle}>
+                        <div className="input-group-addon"><i className="fa fa-comment"/></div>
+                        <textarea type="text" className="form-control" placeholder="Comment...." ref="commentBody" />
+                    </div>
                   </div>
-                  <button style={submitStyle} type="submit" className="btn btn-default" value="Post">Share</button>
+                  <button style={submitStyle} type="submit" className="btn btn-info" value="Post">Share</button>
                 </form>
             </div>
         )
@@ -82,11 +93,36 @@ var MyBlogs = React.createClass({
         });
         var blogsOrdered = blogArray.map(function(BlogPost){
             var showComments = BlogPost.comments.map(function(comment){
+                
+                var userImg = {
+                    width: 40
+                }
+                
+                var commentBody = {
+                    paddingLeft: 10
+                }
+                
+                var commentHolder = {
+                    marginBottom: 10,
+                    marginLeft: 30
+                }
+                
                 if (BlogPost.comments){       
                     return(
-                            <li>
-                                <h5>{comment.user}</h5>
-                                <p>{comment.body}</p>
+                            <li style={commentHolder}>
+                                <div className="row vertical-center">
+                                    <div className="col-md-1">
+                                        <img style={userImg} src="img/headshot1.jpg" className="img-responsive img-circle"></img>
+                                    </div>
+                                    <div className="col-md-11">
+                                        <h4>{comment.user}</h4>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-11 col-md-offset-1">
+                                        <p style={commentBody}>{comment.body}</p>
+                                    </div>
+                                </div>
                             </li>
                         )
                 } 
@@ -98,6 +134,16 @@ var MyBlogs = React.createClass({
                 )
             }
         
+            var commentBoxStyle = {
+                paddingBottom: '6%',
+                paddingTop: '0%',
+                backgroundColor: '#f9f9f9'
+            }
+            
+            var postCommentStyle = {
+                marginBottom: 75
+            }
+            
             return(
                 <li className='well list-unstyled blog-content row'> 
                     <div className="row align-top">
@@ -110,9 +156,14 @@ var MyBlogs = React.createClass({
                         </div>
                     </div>
                     <div className="blog-body"> </div>
-                    <PostComment blogId={BlogPost._id}/>
-                    <div className="blog-comments">
-                        <ul>{showComments}</ul>
+                    <div className="well" style={commentBoxStyle}>
+                        <div style={postCommentStyle}>
+                            <PostComment blogId={BlogPost._id} numComments={BlogPost.comments.length}/>
+                        </div>
+                        <div className="blogComment-separator center-block"></div>
+                        <div className="blog-comments">
+                            <ul className="list-unstyled">{showComments}</ul>
+                        </div>
                     </div>
                 </li>
             )
