@@ -32,16 +32,42 @@ var PostComment = React.createClass({
     },
     
     render: function(){
+        var commentBoxStyle = {
+                paddingBottom: '6%',
+                paddingTop: '0%',
+                backgroundColor: '#f9f9f9'
+        }
+        
+        var userStyle = {
+            width: '25%',
+            marginLeft: '2%'
+        }
+        var commentStyle = {
+            width: '98%',
+            marginLeft: '2%'
+        }
+        
+        var submitStyle = {
+            float: 'right'
+        }
+        
+        var formStyle = {
+            paddingTop: '15px'
+        }
+        
         return(
-            <div>
-                <form onSubmit={this.handleSubmit}>
+            <div className="well" style={commentBoxStyle}>
+                <div className="blog-commentsCounter">
+                    <h3 className="blog-commentsCounterText"> 8 Comments </h3>
+                </div>
+                <form style={formStyle} onSubmit={this.handleSubmit}>
                   <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Username" ref="commentUser" />
+                    <input style={userStyle} type="text" className="form-control" placeholder="Username" ref="commentUser" />
                   </div>
                   <div className="form-group">
-                    <input type="text" className="form-control" placeholder="Comment...." ref="commentBody" />
+                    <input style={commentStyle} type="text" className="form-control" placeholder="Comment...." ref="commentBody" />
                   </div>
-                  <button type="submit" className="btn btn-default" value="Post">Comment</button>
+                  <button style={submitStyle} type="submit" className="btn btn-default" value="Post">Share</button>
                 </form>
             </div>
         )
@@ -84,17 +110,20 @@ var MyBlogs = React.createClass({
                         </div>
                     </div>
                     <div className="blog-body"> </div>
+                    <PostComment blogId={BlogPost._id}/>
                     <div className="blog-comments">
                         <ul>{showComments}</ul>
                     </div>
-                    <PostComment blogId={BlogPost._id}/>
                 </li>
             )
         })
-
+        
+        var blogStyle = {
+            width: '75%'
+        }
         return(
             <div>
-                <ul>
+                <ul style={blogStyle}>
                     {blogsOrdered}
                 </ul>
             </div>
