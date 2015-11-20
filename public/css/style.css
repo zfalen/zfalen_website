@@ -408,7 +408,7 @@
 
 .blog-content {
     text-align: left;
-    padding-left: 75px;
+    padding-left: 35px;
 }
 
 .blog-title {
@@ -419,6 +419,14 @@
 .blog-subtitle {
     font-weight: 200;
     margin-top: 0px;
+}
+
+.blogTitle-separator {
+    height: 1px;
+    width: 95%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: rgba(3, 169, 244, 0.15);
 }
 
 .blog-body {

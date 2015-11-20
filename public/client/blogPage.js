@@ -160,9 +160,9 @@ var MyBlogs = React.createClass({
                                 <h1 className="blog-subtitle">{BlogPost.subtitle}</h1>
                                 <p>{asMonth.toUpperCase() + " / " + asDate.getDate() + " / " + asDate.getFullYear()}</p>
                             </div>
+                            <div className="blogTitle-separator center-block"></div>
                         </div>
                     </div>
-                    <div className="blogComment-separator center-block"></div>
                     <div className="blog-body"> {BlogPost.body} </div>
                     <div className="well blog-commentBox">
                         <div style={postCommentStyle}>
