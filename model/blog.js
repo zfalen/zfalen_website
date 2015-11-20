@@ -10,5 +10,6 @@ var BlogSchema   = new Schema({
     comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
     date: { type: Date, default: Date.now }
 });
+
 BlogSchema.index({title: 'text', body: 'text' }, function(error) {});
 module.exports = mongoose.model('Blog', BlogSchema);

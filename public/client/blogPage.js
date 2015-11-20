@@ -1,8 +1,58 @@
+var PostComment = React.createClass({
+   
+    handleSubmit: function(e){
+        e.preventDefault();
+        var commentUrl = ('/api/blog/' + this.props.blogId + '/comment');
+        
+        var commentUser = React.findDOMNode(this.refs.commentUser).value.trim();
+        var commentBody = React.findDOMNode(this.refs.commentBody).value.trim();
+        
+        var data = ({user: commentUser, body: commentBody});
+    
+        if (!commentUser || !commentBody) {
+          return;
+        };
+        
+        $.ajax({
+          url: commentUrl,
+          dataType: 'json',
+          type: 'POST',
+          data: data,
+          success: function(data) {
+            console.log(data);
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.props.url, status, err.toString());
+          }.bind(this)
+        });
+        
+        React.findDOMNode(this.refs.commentUser).value = '';
+        React.findDOMNode(this.refs.commentBody).value = '';
+        return;
+    },
+    
+    render: function(){
+        return(
+            <div>
+                <form onSubmit={this.handleSubmit}>
+                  <div className="form-group">
+                    <input type="text" className="form-control" placeholder="Username" ref="commentUser" />
+                  </div>
+                  <div className="form-group">
+                    <input type="text" className="form-control" placeholder="Comment...." ref="commentBody" />
+                  </div>
+                  <button type="submit" className="btn btn-default" value="Post">Comment</button>
+                </form>
+            </div>
+        )
+    }
+});
+
 var MyBlogs = React.createClass({
     render: function(){
         var blogArray = [];
         var BlogData = this.props.data.map(function(BlogPost){
-            blogArray.unshift({name: BlogPost.name, subtitle: BlogPost.subtitle, body: BlogPost.body, img: BlogPost.img, comments: BlogPost.comments, date: BlogPost.date});
+            blogArray.unshift({_id: BlogPost._id, name: BlogPost.name, subtitle: BlogPost.subtitle, body: BlogPost.body, img: BlogPost.img, comments: BlogPost.comments, date: BlogPost.date});
         });
         var blogsOrdered = blogArray.map(function(BlogPost){
             var showComments = BlogPost.comments.map(function(comment){
@@ -15,8 +65,6 @@ var MyBlogs = React.createClass({
                         )
                 } 
             });
-            
-            console.log("this is the droid you are looking for " + showComments.length);
             
             if (showComments.length === 0){
                 showComments = (
@@ -39,6 +87,7 @@ var MyBlogs = React.createClass({
                     <div className="blog-comments">
                         <ul>{showComments}</ul>
                     </div>
+                    <PostComment blogId={BlogPost._id}/>
                 </li>
             )
         })
@@ -123,8 +172,8 @@ var BlogBuilder = React.createClass({
         });
 
         // TODO: send request to the server
-        this.refs.newName.value = '';
-        this.refs.newSubtitle.value = '';
+        React.findDOMNode(this.refs.newName).value = '';
+        React.findDOMNode(this.refs.newSubtitle).value = '';
         return;
   },
     
