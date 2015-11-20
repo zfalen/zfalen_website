@@ -133,16 +133,20 @@ var MyBlogs = React.createClass({
                     <li><p> No Comments Yet... </p></li>
                 )
             }
-        
-            var commentBoxStyle = {
-                paddingBottom: '6%',
-                paddingTop: '0%',
-                backgroundColor: '#f9f9f9'
-            }
             
             var postCommentStyle = {
                 marginBottom: 75
             }
+            
+            var subtitleStyle = {
+                marginLeft: 10
+            }
+            
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+            var asDate = new Date(BlogPost.date);
+
+            var asMonth = months[asDate.getMonth()];
             
             return(
                 <li className='well list-unstyled blog-content row'> 
@@ -152,11 +156,15 @@ var MyBlogs = React.createClass({
                         </div>
                         <div className="col-md-9">
                             <h1 className="blog-title"> {BlogPost.name}</h1>
-                            <h1 className="blog-subtitle">{BlogPost.subtitle}</h1>
+                            <div style={subtitleStyle}>
+                                <h1 className="blog-subtitle">{BlogPost.subtitle}</h1>
+                                <p>{asMonth.toUpperCase() + " / " + asDate.getDate() + " / " + asDate.getFullYear()}</p>
+                            </div>
                         </div>
                     </div>
-                    <div className="blog-body"> </div>
-                    <div className="well" style={commentBoxStyle}>
+                    <div className="blogComment-separator center-block"></div>
+                    <div className="blog-body"> {BlogPost.body} </div>
+                    <div className="well blog-commentBox">
                         <div style={postCommentStyle}>
                             <PostComment blogId={BlogPost._id} numComments={BlogPost.comments.length}/>
                         </div>
@@ -309,11 +317,17 @@ var RenderBlogs = React.createClass({
         var textStyle = {
             color: '#f15922'
         };
+        var pageSubtitle ={
+            color: 'rgba(120, 120, 123, 0.83)',
+            marginTop: 30
+        }
+        
         return (
         <div>    
             <div className='container-fluid'>
                 <div className='container text-center' style={divStyle2}>
                     <h1><span style={divStyle3}>[</span><span style={divStyle4}>    BLOG    </span><span style={divStyle3}>]</span></h1>
+                    <h3 style={pageSubtitle}>    A Curated Selection of Recent Musings    </h3>
                 </div>
                 <div style={containerStyle}>
                     <BlogBox url='/api/blog/' pollInterval={2000}/>
