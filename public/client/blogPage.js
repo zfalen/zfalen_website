@@ -5,16 +5,25 @@ var MyBlogs = React.createClass({
             blogArray.unshift({name: BlogPost.name, subtitle: BlogPost.subtitle, body: BlogPost.body, img: BlogPost.img, comments: BlogPost.comments, date: BlogPost.date});
         });
         var blogsOrdered = blogArray.map(function(BlogPost){
-            console.log(BlogPost);
             var showComments = BlogPost.comments.map(function(comment){
-                console.log(comment);
-                return(
-                    <li>
-                        <h5>{comment.user}</h5>
-                        <p>{comment.body}</p>
-                    </li>
+                if (BlogPost.comments){       
+                    return(
+                            <li>
+                                <h5>{comment.user}</h5>
+                                <p>{comment.body}</p>
+                            </li>
+                        )
+                } 
+            });
+            
+            console.log("this is the droid you are looking for " + showComments.length);
+            
+            if (showComments.length === 0){
+                showComments = (
+                    <li><p> No Comments Yet... </p></li>
                 )
-            })
+            }
+        
             return(
                 <li className='well list-unstyled blog-content row'> 
                     <div className="row align-top">
@@ -32,15 +41,15 @@ var MyBlogs = React.createClass({
                     </div>
                 </li>
             )
-        });
-                                            
-            return(
-                <div>
-                    <ul>
-                        {blogsOrdered}
-                    </ul>
-                </div>
-            );
+        })
+
+        return(
+            <div>
+                <ul>
+                    {blogsOrdered}
+                </ul>
+            </div>
+        )
     }
 });
 
