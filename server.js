@@ -67,18 +67,6 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 
 
-
-
-// Passport Stuff
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
-
-require('./routes/userRoutes')(app, passport); // load our routes and pass in our app and fully configured passport
-
-app.use(express.static('public'));
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -216,6 +204,9 @@ router.route('/blog/:blog_id/comment')
     
     })
 
+
+app.use('/css', express.static('css'));
+app.use('/img', express.static('img'));
 
 
 if (process.env.NODE_ENV === 'production') {

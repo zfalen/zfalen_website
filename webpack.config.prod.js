@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
   devtool: 'source-map',
-  entry: {bundle: './public/client/index'},
+  entry: {bundle: './client/index'},
   output: {
     path: path.join(__dirname, 'static'),
     filename: '[name].js',
@@ -27,7 +27,7 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       loaders: ['babel'],
-      include: path.join(__dirname, '/public/client')
+      include: path.join(__dirname, '/client')
     }]
   }
 };

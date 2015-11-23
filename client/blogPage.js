@@ -206,7 +206,6 @@ var BlogBox = React.createClass({
             dataType: 'json',
             cache: false,
             success: function(data){
-                console.log('inside succces!')
                 this.setState({data: data});
             }.bind(this),
             error: function(xhr, status, err){
