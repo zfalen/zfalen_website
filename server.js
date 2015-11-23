@@ -217,6 +217,7 @@ router.route('/blog/:blog_id/comment')
 
 app.use('/css', express.static('css'));
 app.use('/img', express.static('img'));
+  app.use('/static', express.static('static'));
 
 
 if (process.env.NODE_ENV === 'production') {
