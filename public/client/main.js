@@ -2,7 +2,7 @@ var React = require('react');
 
 
 // NAVBAR
-var NavBar = require('./NavBar');
+var NavBar = require('./navBar');
 
 // PROFILE SECTION
 var ProfileHeader = require('./profileHeader');
