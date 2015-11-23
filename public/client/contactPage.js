@@ -1,3 +1,7 @@
+var React = require('react');
+
+
+
 var RenderContact = React.createClass({   
     render: function(){
         var divStyle = {
@@ -51,3 +55,5 @@ var RenderContact = React.createClass({
         )
     }
 });
+
+module.exports = RenderContact;

@@ -1,3 +1,6 @@
+var React = require('react');
+
+
 var PostComment = React.createClass({
    
     handleSubmit: function(e){
@@ -13,13 +16,15 @@ var PostComment = React.createClass({
           return;
         };
         
+        var self = this;
+        
         $.ajax({
           url: commentUrl,
           dataType: 'json',
           type: 'POST',
           data: data,
           success: function(data) {
-            console.log(data);
+              self.props.onPost();
           }.bind(this),
           error: function(xhr, status, err) {
             console.error(this.props.url, status, err.toString());
@@ -87,6 +92,7 @@ var PostComment = React.createClass({
 
 var MyBlogs = React.createClass({
     render: function(){
+        var self = this;
         var blogArray = [];
         var BlogData = this.props.data.map(function(BlogPost){
             blogArray.unshift({_id: BlogPost._id, name: BlogPost.name, subtitle: BlogPost.subtitle, body: BlogPost.body, img: BlogPost.img, comments: BlogPost.comments, date: BlogPost.date});
@@ -129,10 +135,8 @@ var MyBlogs = React.createClass({
             });
             
             if (showComments.length === 0){
-                showComments = (
-                    <li><p> No Comments Yet... </p></li>
-                )
-            }
+                showComments = null;
+            }  
             
             var postCommentStyle = {
                 marginBottom: 75
@@ -166,7 +170,7 @@ var MyBlogs = React.createClass({
                     <div className="blog-body"> {BlogPost.body} </div>
                     <div className="well blog-commentBox">
                         <div style={postCommentStyle}>
-                            <PostComment blogId={BlogPost._id} numComments={BlogPost.comments.length}/>
+                            <PostComment blogId={BlogPost._id} onPost={self.props.newData} numComments={BlogPost.comments.length}/>
                         </div>
                         <div className="blogComment-separator center-block"></div>
                         <div className="blog-comments">
@@ -214,18 +218,22 @@ var BlogBox = React.createClass({
     
     componentDidMount: function(){
         this.loadBlogsFromServer();
-        setInterval(this.loadBlogsFromServer, this.props.pollInterval);
     },
     
     render: function(){
+        
+        var self = this;
         var divStyle = {
             marginTop: 50
+        };
+        var doRefresh = function(){
+            self.loadBlogsFromServer();
         };
         return (
         <div>
             <div style={divStyle}>
                 <ul>
-                    <MyBlogs data={this.state.data}/>
+                    <MyBlogs data={this.state.data} newData={doRefresh}/>
                 </ul>
             </div>
         </div>
@@ -336,7 +344,7 @@ var RenderBlogs = React.createClass({
                     <h3 style={pageSubtitle}>    A Curated Selection of Recent Musings    </h3>
                 </div>
                 <div style={containerStyle}>
-                    <BlogBox url='/api/blog/' pollInterval={2000}/>
+                    <BlogBox url='/api/blog/'/>
                 </div>
             </div>
             <div className='container-fluid'>
@@ -354,3 +362,6 @@ var RenderBlogs = React.createClass({
         );
     }
 });
+
+
+module.exports = RenderBlogs;

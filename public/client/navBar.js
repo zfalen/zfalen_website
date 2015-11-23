@@ -1,3 +1,7 @@
+var React = require('react');
+
+
+
 var NavBtn1 = React.createClass({
     
     getInitialState: function(){
@@ -195,3 +199,5 @@ var NavBar = React.createClass({
         );
     }
 });
+
+module.exports = NavBar;

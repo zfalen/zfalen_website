@@ -1,3 +1,30 @@
+var React = require('react');
+
+
+// NAVBAR
+var NavBar = require('./NavBar');
+
+// PROFILE SECTION
+var ProfileHeader = require('./profileHeader');
+var MiniProfile = require('./profilePage');
+
+
+// PORTFOLIO SECTION
+var RenderPortfolio = require('./portfolioPage');
+
+
+// BLOG SECTION
+var RenderBlogs = require('./blogPage');
+
+
+// CONTACT SECTION
+
+var RenderContact = require('./contactPage');
+
+
+
+// CONTENT HOLDERS
+
 var ContentWindow1 = React.createClass({
    
     render: function(){
@@ -6,9 +33,9 @@ var ContentWindow1 = React.createClass({
         }
         return(
             <div id="content-holder-1" align='center'>
-                <RenderProfile/>
+                <ProfileHeader/>
                 <div style={padding}></div>
-                <ProfileSummary/>
+                <MiniProfile/>
             </div>
         )
     }
@@ -46,6 +73,8 @@ var ContentWindow4 = React.createClass({
         )
     }
 });
+
+
 
 
 var Footer = React.createClass({
@@ -100,6 +129,8 @@ var Footer = React.createClass({
 });
 
 
+
+
 var MainWindow = React.createClass({
     
     getInitialState: function(){
@@ -137,4 +168,4 @@ var MainWindow = React.createClass({
     }
 });
 
-React.render(<MainWindow/>, document.getElementById('render-here'));
+module.exports = MainWindow;

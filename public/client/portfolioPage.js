@@ -1,3 +1,7 @@
+var React = require('react');
+
+
+
 var RenderPortfolio = React.createClass({   
     render: function(){
         var divStyle = {
@@ -52,3 +56,5 @@ var RenderPortfolio = React.createClass({
         )
     }
 });
+
+module.exports = RenderPortfolio;
