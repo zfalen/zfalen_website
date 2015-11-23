@@ -16,7 +16,7 @@
   "author": "Zach Falen",
   "license": "ISC",
   "engines": {
-    "node": "4.1.x"
+    "node": "4.1.0"
   },
   "devDependencies": {
     "babel-core": "^5.4.7",
