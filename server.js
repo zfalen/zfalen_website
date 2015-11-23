@@ -5,15 +5,11 @@ var path = require('path');
 var http = require('http');
 var fs = require('fs');
 var bodyParser = require('body-parser');
-var db = require('./model/db');
 var Blog = require('./model/blog');
 var Comment = require('./model/comment');
 var passportLocal = require('passport-local');
 var passport = require('passport');
 var flash = require('connect-flash');
-
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
 
 var morgan= require('morgan');
 var cookieParser = require('cookie-parser');
@@ -23,6 +19,20 @@ var router = express.Router();
 var Twit = require('twit');
 var axios = require('axios');
 var _ = require('lodash');
+
+
+var mongoose = require('mongoose');
+var uriUtil = require('mongodb-uri');
+
+var options = {
+  server:  { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } },
+  replset: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }
+};  
+var mongodbUri = process.env.MONGOLAB_URI || "mongodb://localhost";
+var mongooseUri = uriUtil.formatMongoose(mongodbUri);
+
+mongoose.connect(mongooseUri, options);
+
 
 
 app.use(function(req, res, next) {
