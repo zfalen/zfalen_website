@@ -96,7 +96,7 @@ router.use(function(req, res, next) {
 var static_path = path.join(__dirname, '/');
 
 app.get('/', function(req, res){
-    res.render('index.html', {
+    res.sendFile('index.html', {
       root: static_path 
   });
 });
