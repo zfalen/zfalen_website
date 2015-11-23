@@ -93,7 +93,7 @@ router.use(function(req, res, next) {
 });
 
 
-var static_path = path.join(__dirname, '/public');
+var static_path = path.join(__dirname, '/');
 
 app.get('/', function(req, res){
     res.render('index.html', {
