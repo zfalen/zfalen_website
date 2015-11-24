@@ -196,29 +196,6 @@ var MyBlogs = React.createClass({
 
 var BlogBox = React.createClass({
     
-    getInitialState: function(){
-        return {data: []};
-    },
-    
-    loadBlogsFromServer: function(){
-        $.ajax({
-            url: this.props.url,
-            dataType: 'json',
-            cache: false,
-            success: function(data){
-                this.setState({data: data});
-            }.bind(this),
-            error: function(xhr, status, err){
-                console.log('broken URL is ' + this.props.url)
-                console.error(this.props.url, status, err.toString)
-            }.bind(this)
-        });
-    },
-    
-    componentDidMount: function(){
-        this.loadBlogsFromServer();
-    },
-    
     render: function(){
         
         var self = this;
@@ -226,13 +203,13 @@ var BlogBox = React.createClass({
             marginTop: 50
         };
         var doRefresh = function(){
-            self.loadBlogsFromServer();
+            self.props.loadBlogsFromServer();
         };
         return (
         <div>
             <div style={divStyle}>
                 <ul>
-                    <MyBlogs data={this.state.data} newData={doRefresh}/>
+                    <MyBlogs data={this.props.data} newData={doRefresh}/>
                 </ul>
             </div>
         </div>
@@ -254,12 +231,15 @@ var BlogBuilder = React.createClass({
           return;
         };
         
+        var self = this;
+        
         $.ajax({
           url: this.props.url,
           dataType: 'json',
           type: 'POST',
           data: data,
           success: function(data) {
+            self.props.loadBlogsFromServer();
             console.log(data);
           }.bind(this),
           error: function(xhr, status, err) {
@@ -305,6 +285,30 @@ var BlogBuilder = React.createClass({
 
 var RenderBlogs = React.createClass({
     
+    getInitialState: function(){
+        return {data: []};
+    },
+    
+    loadBlogsFromServer: function(){
+        $.ajax({
+            url: '/api/blog',
+            dataType: 'json',
+            cache: false,
+            success: function(data){
+                this.setState({data: data});
+            }.bind(this),
+            error: function(xhr, status, err){
+                console.log('broken URL is ' + this.props.url)
+                console.error(this.props.url, status, err.toString)
+            }.bind(this)
+        });
+    },
+    
+    componentDidMount: function(){
+        this.loadBlogsFromServer();
+    },
+    
+    
     render: function(){
         var divStyle = {
             marginTop: 50,
@@ -343,7 +347,7 @@ var RenderBlogs = React.createClass({
                     <h3 style={pageSubtitle}>    A Curated Selection of Recent Musings    </h3>
                 </div>
                 <div style={containerStyle}>
-                    <BlogBox url='/api/blog/'/>
+                    <BlogBox data={this.state.data} loadBlogsFromServer={this.loadBlogsFromServer}/>
                 </div>
             </div>
             <div className='container-fluid'>
@@ -352,7 +356,7 @@ var RenderBlogs = React.createClass({
                 </div>
                 <div className='container'>
                     <div className={divStyle2}>
-                        <BlogBuilder url='/api/blog/'/>
+                        <BlogBuilder url='/api/blog/' loadBlogsFromServer={this.loadBlogsFromServer}/>
                     </div>
                     <div style={divStyle2}/>
                 </div>
