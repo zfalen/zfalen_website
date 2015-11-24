@@ -1,5 +1,7 @@
 var React = require('react');
 
+var ContactHeader = require('./contactHeader');
+
 
 
 var RenderContact = React.createClass({   
@@ -29,8 +31,8 @@ var RenderContact = React.createClass({
             color: '#f15922'
         };
         var titlePadding = {
-            paddingTop: 100,
-            marginBottom: 200,
+            paddingTop: 50,
+            marginBottom: 100,
         };
         
         var headingStyle = {
@@ -49,8 +51,49 @@ var RenderContact = React.createClass({
             </div>
             
             <div className='container text-center' style={titlePadding}>
-                <h1 style={headingStyle}>    COMING SOON    </h1>
+                <ContactHeader/>
             </div>
+            
+            <div className="row">
+            <div className="col-md-5">
+            
+                        <div className="col-md-12">
+                            <div className="vertical-center contact-iconBlock">
+                           
+                                <h5>zach.falen@partnerscreative.com</h5>
+                                <i className={"fa fa-envelope fa-3x contact-mailIcon"}></i>
+                            </div>
+
+                        </div>
+            
+                        <div className="col-md-12">
+                            <div className="vertical-center contact-iconBlock">
+                                <h5>800 Ronald Ave // Misoula, MT 59801</h5>
+                                <i className={"fa fa-map-marker fa-4x contact-icon"}></i>
+                            </div>
+                        </div>
+                        
+                        <div className="col-md-12">
+                            <div className="vertical-center contact-iconBlock">
+                                <h5>406.544.7052</h5>
+                                <i className={"fa fa-phone fa-4x contact-icon"}></i>
+
+                            </div>
+                        </div>
+            </div>
+            
+            <div className="col-md-7">
+                <div id="profileSummary-backgroundHolder-outer">
+                    <div id="profileSummary-backgroundHolder-inner">
+
+                        <div id="profileSummary-backgroundHolder-overlay"></div>
+
+                        <div id="profileSummary-backgroundHolder-img"></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
         </div>
         )
     }

@@ -215,7 +215,7 @@ var BlogBox = React.createClass({
                         <MyBlogs data={this.props.data} newData={doRefresh}/>
                     </div>
                     <div className="col-md-2 shareBar">
-                        <StickyDiv offsetTop={20}><SocialBar/></StickyDiv>
+                        <StickyDiv offsetTop={60}><SocialBar/></StickyDiv>
                     </div>
                 </ul>
             </div>

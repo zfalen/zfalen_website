@@ -480,6 +480,31 @@
 
 
 
+/*CONTACT PAGE*/
+
+.contact-iconBlock {
+    float: right;
+}
+
+.contact-icon {
+    float: right;
+    width: 75px;
+    height: 75px;
+    margin: 24px;
+    padding: 10px;
+    background-color: rgba(20, 20, 20, 1);
+    color: rgba(249, 249, 249, 1);
+}
+
+.contact-mailIcon {
+    float: right;
+    width: 75px;
+    height: 75px;
+    margin: 24px;
+    padding: 15px;
+    background-color: rgba(20, 20, 20, 1);
+        color: rgba(249, 249, 249, 1);
+}
 
 
 /*FOOTER*/
