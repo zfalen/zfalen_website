@@ -1,7 +1,5 @@
 var React = require('react');
 
-var Sticky = require('react-sticky');
-
 import {
   ShareButtons,
   ShareCounts,
@@ -39,7 +37,7 @@ const Demo = React.createClass({
             title={title}
             className="Demo__some-network__share-button">
             <FacebookIcon
-              size={50}
+              size={60}
               round={true} />
           </FacebookShareButton>
 
@@ -51,7 +49,7 @@ const Demo = React.createClass({
             title={title}
             className="Demo__some-network__share-button">
             <TwitterIcon
-              size={50}
+              size={60}
               round={true} />
           </TwitterShareButton>
 
@@ -62,7 +60,7 @@ const Demo = React.createClass({
             url={shareUrl}
             className="Demo__some-network__share-button">
             <GooglePlusIcon
-              size={50}
+              size={60}
               round={true} />
           </GooglePlusShareButton>
 
@@ -74,7 +72,7 @@ const Demo = React.createClass({
             title={title}
             className="Demo__some-network__share-button">
             <LinkedinIcon
-              size={50}
+              size={60}
               round={true} />
           </LinkedinShareButton>
 
