@@ -1,5 +1,8 @@
 var React = require('react');
 
+var Demo = require('./socialShare');
+var StickyDiv = require('react-stickydiv');
+
 
 var PostComment = React.createClass({
    
@@ -181,18 +184,16 @@ var MyBlogs = React.createClass({
             )
         })
         
-        var blogStyle = {
-            width: '75%'
-        }
         return(
             <div>
-                <ul style={blogStyle}>
+                <ul className="col-md-9">
                     {blogsOrdered}
                 </ul>
             </div>
         )
     }
 });
+
 
 var BlogBox = React.createClass({
     
@@ -205,11 +206,15 @@ var BlogBox = React.createClass({
         var doRefresh = function(){
             self.props.loadBlogsFromServer();
         };
+        
         return (
         <div>
             <div style={divStyle}>
                 <ul>
                     <MyBlogs data={this.props.data} newData={doRefresh}/>
+                    <div className="col-md-3 shareBar">
+                        <StickyDiv offsetTop={20}><Demo/></StickyDiv>
+                    </div>
                 </ul>
             </div>
         </div>
