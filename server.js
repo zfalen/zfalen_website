@@ -93,8 +93,10 @@ router.use(function(req, res, next) {
 
 var static_path = path.join(__dirname, '/');
 
+app.use(express.static('public'));
+
 app.get('/', function(req, res){
-    res.sendFile('index.html', {
+    res.sendFile('public/index.html', {
       root: static_path 
   });
 });
@@ -213,11 +215,6 @@ router.route('/blog/:blog_id/comment')
         })
     
     })
-
-
-app.use('/css', express.static('css'));
-app.use('/img', express.static('img'));
-  app.use('/static', express.static('static'));
 
 
 if (process.env.NODE_ENV === 'production') {

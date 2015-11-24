@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'eval',
   entry: {bundle: [
     'webpack-hot-middleware/client',
-    './client/index'
+    './public/client/index'
     ] 
   },
   output: {
@@ -23,7 +23,7 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       loaders: ['babel'],
-      include: path.join(__dirname, '/client')
+      include: path.join(__dirname, '/public/client')
     }]
   }
 };
