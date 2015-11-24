@@ -1,3 +1,5 @@
+var React = require('react');
+
 var MyTweets = React.createClass({
     render: function(){
         var tweetData = this.props.data.map(function(tweet){
@@ -59,3 +61,5 @@ var TweetBox = React.createClass({
         );
     }
 });
+
+module.exports = TweetBox;

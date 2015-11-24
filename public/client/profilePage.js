@@ -1,5 +1,8 @@
 var React = require('react');
 
+var TweetBox = require('./recentTweet');
+
+
 var Profile = React.createClass({
    
     render: function(){
