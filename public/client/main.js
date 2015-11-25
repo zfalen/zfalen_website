@@ -96,7 +96,8 @@ var Footer = React.createClass({
             backgroundColor: 'rgb(32, 32, 32)',
             width: '100%',
             height: 150,
-            position: 'relative'
+            position: 'relative',
+            marginTop: -25
         }
         
         return(

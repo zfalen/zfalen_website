@@ -1,6 +1,7 @@
 var React = require('react');
 
 var ContactHeader = require('./contactHeader');
+var Map = require('./map');
 
 
 
@@ -73,7 +74,7 @@ var RenderContact = React.createClass({
         };
         var titlePadding = {
             paddingTop: 50,
-            marginBottom: 100,
+            marginBottom: 0,
         };
         
         var headingStyle = {
@@ -94,6 +95,10 @@ var RenderContact = React.createClass({
             <div className='container text-center' style={titlePadding}>
                 <ContactHeader/>
             </div>
+            
+            <div className="container">
+            <div className="blogTitle-separator center-block"></div>
+            </div><br/>
             
             <div className="row">
             <div className="col-md-5">
@@ -160,6 +165,10 @@ var RenderContact = React.createClass({
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div className="row">
+                <Map/>
             </div>
             
         </div>
