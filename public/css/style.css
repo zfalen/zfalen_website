@@ -200,6 +200,7 @@
 
     -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 80.5% 0%, 79% 20px, 77.5% 0%);
     clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%, 80.5% 0%, 79% 20px, 77.5% 0%);
+    overflow: hidden;
 }
 
 
@@ -484,13 +485,13 @@
 
 .btn-warning{
 	color: #FFF;
-	background-color: rgba(249, 249, 249, 1) !important;
-    border-color: rgba(249, 249, 249, 1) !important;
+	background-color: rgba(249, 249, 249, 1) ;
+    border-color: rgba(249, 249, 249, 1) ;
 }
 .btn-warning:hover {
 	color: #000;
-	background-color: rgba(249, 249, 249, 1) !important;
-    border-color: rgba(249, 249, 249, 1) !important;
+	background-color: rgba(249, 249, 249, 1) ;
+    border-color: rgba(249, 249, 249, 1) ;
 }
 
 .ghost{

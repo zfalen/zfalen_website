@@ -15,7 +15,6 @@ var morgan= require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 
-var router = express.Router();
 var Twit = require('twit');
 var axios = require('axios');
 var _ = require('lodash');
@@ -83,7 +82,35 @@ app.use(bodyParser.json());
 // ROUTES FOR OUR API
 // =============================================================================
 
-var router = express.Router();              // get an instance of the express Router
+var router = express.Router();
+var nodemailer = require('nodemailer');
+var email   = require('emailjs');
+
+router.route('/sayHello')
+
+    .post(function(req, res){
+
+        var server  = email.server.connect({
+           user: "zfalen0109@gmail.com", 
+           password: "Bluedog1", 
+           host: "smtp.googlemail.com", 
+           ssl: true,
+           port: 465
+        });
+
+        var message = {
+           text:    "i hope this works", 
+           from:    "me <zfalen0109@gmail.com>", 
+           to:      "Zach Falen <zfalen0109@gmail.com>, Zach Falen <zach.falen@partnerscreative.com>",
+//           cc:      "else <else@your-email.com>",
+           subject: ("WEBSITE SUBMISSION FROM: " + req.body.name + " <" +req.body.email + "> - "),
+           attachment: {data:"<html><strong>" + req.body.subject + ": </strong></br>" + req.body.body + "</html>", alternative:true}
+        };
+
+        // send the message and get a callback with an error or details of the message that was sent
+        server.send(message, function(err, message) { console.log(err || message); });
+    })
+
 
 router.use(function(req, res, next) {
     console.log('Something is happening.');

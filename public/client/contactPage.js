@@ -5,6 +5,47 @@ var ContactHeader = require('./contactHeader');
 
 
 var RenderContact = React.createClass({   
+    
+    handleSubmit: function(e){
+        e.preventDefault();
+        var submissionUrl = '/api/sayHello';
+        
+        var submissionName = React.findDOMNode(this.refs.submissionName).value.trim();
+        var submissionEmail = React.findDOMNode(this.refs.submissionEmail).value.trim();
+        var submissionSubject = React.findDOMNode(this.refs.submissionSubject).value.trim();
+        var submissionBody = React.findDOMNode(this.refs.submissionBody).value.trim();
+        
+        var data = ({name: submissionName, email: submissionEmail, subject: submissionSubject, body: submissionBody});
+    
+        if (!submissionName || !submissionBody || !submissionEmail || !submissionSubject) {
+          alert('All fields are required');
+          return;
+        };
+        
+        var self = this;
+        
+        $.ajax({
+          url: submissionUrl,
+          dataType: 'json',
+          type: 'POST',
+          data: data,
+          success: function(data) {
+              self.props.onPost();
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.props.url, status, err.toString());
+          }.bind(this)
+        });
+        
+        React.findDOMNode(this.refs.submissionName).value = '';
+        React.findDOMNode(this.refs.submissionEmail).value = '';
+        React.findDOMNode(this.refs.submissionBody).value = '';
+        
+        alert('Thank you for reaching out! I\'ll be in touch soon.');
+        
+        return;
+    },
+    
     render: function(){
         var divStyle = {
             marginTop: 50,
@@ -86,15 +127,24 @@ var RenderContact = React.createClass({
             
                 <div className="container" id='contact-formHolder'>
                     <div className="col-md-8">
-                            <form>
+                            <form className="form-horizontal" onSubmit={this.handleSubmit}>
                                   <div className="form-group">
-                                    <input type="email" className="form-control input-lg" id="exampleInputEmail1" placeholder="Your Name"/>
-                                  </div>
-                                  <div className="form-group">
-                                    <input type="password" className="form-control input-lg" id="exampleInputPassword1" placeholder="Your Email Address"/>
+                                    <div className="col-md-6">
+                                        <input className="form-control input-lg" id="submissionName" ref="submissionName" placeholder="Your Name"/>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <input type="email" className="form-control input-lg" id="submissionEmail" ref="submissionEmail" placeholder="Your Email Address"/>
+                                    </div>
+                                  </div> 
+                                  <div className="form-group form-group-lg">
+                                    <div className="col-md-12">
+                                        <input className="form-control" id="submissionSubject" ref="submissionSubject" placeholder="Subject"/>
+                                    </div>
                                   </div>
                                   <div className="form-group form-group-lg">
-                                    <textarea type="password" className="form-control" id="contact-message" placeholder="Message"/>
+                                    <div className="col-md-12">
+                                        <textarea className="form-control" id="contact-message" ref="submissionBody" placeholder="Message..."/>
+                                    </div>
                                   </div>
                                   <button type="submit" className="btn btn-warning ghost"><h3>SEND MESSAGE</h3></button>
                             </form>
