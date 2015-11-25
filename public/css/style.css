@@ -482,6 +482,34 @@
 
 /*CONTACT PAGE*/
 
+.btn-warning{
+	color: #FFF;
+	background-color: rgba(249, 249, 249, 1) !important;
+    border-color: rgba(249, 249, 249, 1) !important;
+}
+.btn-warning:hover {
+	color: #000;
+	background-color: rgba(249, 249, 249, 1) !important;
+    border-color: rgba(249, 249, 249, 1) !important;
+}
+
+.ghost{
+	background: transparent;
+	color: #F2F2F2;
+	-webkit-transition: background .2s ease-in-out, border .2s ease-in-out;
+	-moz-transition: background .2s ease-in-out, border .2s ease-in-out;
+	-ms-transition: background .2s ease-in-out, border .2s ease-in-out;
+	-o-transition: background .2s ease-in-out, border .2s ease-in-out;
+	transition: background .2s ease-in-out, border .2s ease-in-out;
+	-webkit-border-radius: 0;
+	-moz-border-radius:    0;
+	border-radius:         0;
+    margin-top: 25px;
+	width: 50%;
+	padding-top: 10px;
+    padding-bottom: 15px;
+}
+
 .contact-iconBlock {
     float: right;
 }
@@ -504,6 +532,16 @@
     padding: 15px;
     background-color: rgba(20, 20, 20, 1);
         color: rgba(249, 249, 249, 1);
+}
+
+#contact-formHolder {
+    position: absolute;
+    z-index: 2;
+    top: 5%;
+}
+
+#contact-message {
+    height: 100px
 }
 
 

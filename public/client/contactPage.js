@@ -83,15 +83,33 @@ var RenderContact = React.createClass({
             </div>
             
             <div className="col-md-7">
-                <div id="profileSummary-backgroundHolder-outer">
-                    <div id="profileSummary-backgroundHolder-inner">
+            
+                <div className="container" id='contact-formHolder'>
+                    <div className="col-md-8">
+                            <form>
+                                  <div className="form-group">
+                                    <input type="email" className="form-control input-lg" id="exampleInputEmail1" placeholder="Your Name"/>
+                                  </div>
+                                  <div className="form-group">
+                                    <input type="password" className="form-control input-lg" id="exampleInputPassword1" placeholder="Your Email Address"/>
+                                  </div>
+                                  <div className="form-group form-group-lg">
+                                    <textarea type="password" className="form-control" id="contact-message" placeholder="Message"/>
+                                  </div>
+                                  <button type="submit" className="btn btn-warning ghost"><h3>SEND MESSAGE</h3></button>
+                            </form>
+                        </div>
+                    </div>        
 
-                        <div id="profileSummary-backgroundHolder-overlay"></div>
+                    <div id="profileSummary-backgroundHolder-outer">
+                        <div id="profileSummary-backgroundHolder-inner">
 
-                        <div id="profileSummary-backgroundHolder-img"></div>
+                            <div id="profileSummary-backgroundHolder-overlay"></div>
+
+                            <div id="profileSummary-backgroundHolder-img"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
             </div>
             
         </div>
