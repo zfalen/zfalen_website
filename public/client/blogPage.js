@@ -10,12 +10,11 @@ var PostComment = React.createClass({
         e.preventDefault();
         var commentUrl = ('/api/blog/' + this.props.blogId + '/comment');
         
-        var commentUser = React.findDOMNode(this.refs.commentUser).value.trim();
         var commentBody = React.findDOMNode(this.refs.commentBody).value.trim();
         
-        var data = ({user: commentUser, body: commentBody});
+        var data = ({body: commentBody});
     
-        if (!commentUser || !commentBody) {
+        if (!commentBody) {
           return;
         };
         
@@ -34,7 +33,6 @@ var PostComment = React.createClass({
           }.bind(this)
         });
         
-        React.findDOMNode(this.refs.commentUser).value = '';
         React.findDOMNode(this.refs.commentBody).value = '';
         return;
     },
@@ -75,12 +73,6 @@ var PostComment = React.createClass({
                 </div>
                 <form style={formStyle} onSubmit={this.handleSubmit}>
                   <div className="form-group">
-                    <div className="input-group" style={userStyle}>
-                        <div className="input-group-addon"><i className="fa fa-user"/></div>
-                        <input type="text" className="form-control" placeholder="Username" ref="commentUser" />
-                    </div>
-                  </div>
-                  <div className="form-group">
                     <div className="input-group" style={commentStyle}>
                         <div className="input-group-addon"><i className="fa fa-comment"/></div>
                         <textarea type="text" className="form-control" placeholder="Comment...." ref="commentBody" />
@@ -91,6 +83,39 @@ var PostComment = React.createClass({
             </div>
         )
     }
+});
+
+var PostCommentBox = React.createClass({
+   render: function(){
+       
+        var mustLoginStyle = {
+            marginTop: 20,
+            marginLeft: 20,
+            marginBottom: 20
+        }
+        
+        var postCommentStyle = {
+            marginBottom: 75
+        }
+        
+        if (this.props.userName === "anonymous"){
+           return(
+            <div style={mustLoginStyle}>
+                <h4> You must be logged in to comment. </h4>
+                <div className="container">
+                    <p> Log In Using Facebook:</p><a href="/auth/facebook" className="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+                </div>
+            </div>
+           )
+        } else {
+            return(
+            <div style={postCommentStyle}>
+                <PostComment blogId={this.props.blogId} onPost={this.props.onPost} numComments={this.props.numComments}/>
+            </div>
+            )
+        }
+       
+   }
 });
 
 var MyBlogs = React.createClass({
@@ -121,10 +146,10 @@ var MyBlogs = React.createClass({
                             <li style={commentHolder}>
                                 <div className="row vertical-center">
                                     <div className="col-md-1">
-                                        <img style={userImg} src="img/headshot1.jpg" className="img-responsive img-circle"></img>
+                                        <img style={userImg} src={comment.user.facebook.picture} className="img-responsive img-circle"></img>
                                     </div>
                                     <div className="col-md-11">
-                                        <h4>{comment.user}</h4>
+                                        <h4>{comment.user.facebook.name}</h4>
                                     </div>
                                 </div>
                                 <div className="row">
@@ -155,35 +180,34 @@ var MyBlogs = React.createClass({
 
             var asMonth = months[asDate.getMonth()];
             
-            return(
-                <li className='well list-unstyled blog-content row'> 
-                    <div className="row align-top">
-                        <div className="col-md-3">
-                            <img src="img/headshot1.jpg" className="img-responsive thumbnail"></img>
-                        </div>
-                        <div className="col-md-9">
-                            <h1 className="blog-title"> {BlogPost.name}</h1>
-                            <div style={subtitleStyle}>
-                                <h1 className="blog-subtitle">{BlogPost.subtitle}</h1>
-                                <p>{asMonth.toUpperCase() + " / " + asDate.getDate() + " / " + asDate.getFullYear()}</p>
+            
+                return(
+                    <li className='well list-unstyled blog-content row'> 
+                        <div className="row align-top">
+                            <div className="col-md-3">
+                                <img src="img/headshot1.jpg" className="img-responsive thumbnail"></img>
                             </div>
-                            <div className="blogTitle-separator center-block"></div>
+                            <div className="col-md-9">
+                                <h1 className="blog-title"> {BlogPost.name}</h1>
+                                <div style={subtitleStyle}>
+                                    <h1 className="blog-subtitle">{BlogPost.subtitle}</h1>
+                                    <p>{asMonth.toUpperCase() + " / " + asDate.getDate() + " / " + asDate.getFullYear()}</p>
+                                </div>
+                                <div className="blogTitle-separator center-block"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div className="blog-body"> {BlogPost.body} </div>
-                    <div className="well blog-commentBox">
-                        <div style={postCommentStyle}>
-                            <PostComment blogId={BlogPost._id} onPost={self.props.newData} numComments={BlogPost.comments.length}/>
+                        <div className="blog-body"> {BlogPost.body} </div>
+                        <div className="well blog-commentBox">
+                            <PostCommentBox userName={self.props.userName} blogId={BlogPost._id} onPost={self.props.newData} numComments={BlogPost.comments.length}/>
+                            <div className="blogComment-separator center-block"></div>
+                            <div className="blog-comments">
+                                <ul className="list-unstyled">{showComments}</ul>
+                            </div>
                         </div>
-                        <div className="blogComment-separator center-block"></div>
-                        <div className="blog-comments">
-                            <ul className="list-unstyled">{showComments}</ul>
-                        </div>
-                    </div>
-                </li>
-            )
-        })
-        
+                    </li>
+                )
+            })
+    
         return(
             <div>
                 <ul>
@@ -196,6 +220,33 @@ var MyBlogs = React.createClass({
 
 
 var BlogBox = React.createClass({
+    
+    getInitialState: function(){
+        return {userName: null, userImg: null};
+    },
+    
+    checkUser: function(){
+      $.ajax({
+            url: '/api/user',
+            type: 'GET',
+            dataType: 'json',
+            cache: false,
+            success: function(data){
+                if (data.facebook){
+                    this.setState({userName: data.facebook.name, userImg: data.facebook.picture});
+                } else {
+                    this.setState({userName: data.user});
+                }
+            }.bind(this),
+            error: function(xhr, status, err){
+                console.error(status, err.toString)
+            }.bind(this)
+        });
+      },
+    
+    componentDidMount: function(){
+        this.checkUser();
+    },
     
     render: function(){
         
@@ -212,7 +263,7 @@ var BlogBox = React.createClass({
             <div style={divStyle}>
                 <ul>
                     <div className="col-md-10">
-                        <MyBlogs data={this.props.data} newData={doRefresh}/>
+                        <MyBlogs data={this.props.data} userName={this.state.userName} userImg={this.state.userImg} newData={doRefresh}/>
                     </div>
                     <div className="col-md-2 shareBar">
                         <StickyDiv offsetTop={60}><SocialBar/></StickyDiv>
@@ -305,8 +356,7 @@ var RenderBlogs = React.createClass({
                 this.setState({data: data});
             }.bind(this),
             error: function(xhr, status, err){
-                console.log('broken URL is ' + this.props.url)
-                console.error(this.props.url, status, err.toString)
+                console.error(status, err.toString)
             }.bind(this)
         });
     },

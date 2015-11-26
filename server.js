@@ -7,6 +7,7 @@ var fs = require('fs');
 var bodyParser = require('body-parser');
 var Blog = require('./model/blog');
 var Comment = require('./model/comment');
+var User = require('./model/user');
 var passportLocal = require('passport-local');
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -33,6 +34,30 @@ var mongooseUri = uriUtil.formatMongoose(mongodbUri);
 mongoose.connect(mongooseUri, options);
 
 
+// PASSPORT
+// ==========================================
+
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser()); // get information from html forms
+
+app.set('view engine', 'ejs'); // set up ejs for templating
+
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+require('./config/passport')(passport); // pass passport for configuration
+
+require('./routes/userroutes.js')(app, passport); // routes for passport
+
+
+
+
+// ROUTES FOR THE TWITTER API
+// ==========================================
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -69,15 +94,6 @@ app.use('/api/handle/:twitterHandle', fetchTweets);
 
 
 
-require('./config/passport')(passport); // pass passport for configuration
-app.set('view engine', 'ejs'); // set up ejs for templatinga
-
-app.use(morgan('dev'));
-app.use(cookieParser());
-
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -85,6 +101,19 @@ app.use(bodyParser.json());
 var router = express.Router();
 var nodemailer = require('nodemailer');
 var email   = require('emailjs');
+
+var static_path = path.join(__dirname, '/');
+
+app.use(express.static('public'));
+
+
+router.use(function(req, res, next) {
+    console.log('Something is happening.');
+    next();
+});
+
+
+
 
 router.route('/sayHello')
 
@@ -112,21 +141,30 @@ router.route('/sayHello')
     })
 
 
-router.use(function(req, res, next) {
-    console.log('Something is happening.');
-    next();
-});
+router.route('/user')
+
+      .get(function(req, res) {
+
+        if (req.user) {
+          console.log(req.user)
+          mongoose.model('User').findById({
+              _id: req.user._id
+            },
+            function(err, user) {
+              if (err) {
+                return console.log(err);
+              } else {
+                res.send(user)
+              }
+            });
+        } else {
+          res.send({
+            user: "anonymous"
+          })
+        }
+      })
 
 
-var static_path = path.join(__dirname, '/');
-
-app.use(express.static('public'));
-
-app.get('/', function(req, res){
-    res.sendFile('public/index.html', {
-      root: static_path 
-  });
-});
 
 router.route('/blog')
 
@@ -148,7 +186,13 @@ router.route('/blog')
         )})
 
     .get(function(req, res) {
-        Blog.find({}).populate('comments').exec(function(err, blog) {
+        Blog.find({}).populate({
+        path: 'comments',
+        populate: {
+          path: 'user',
+          select: 'facebook.name facebook.picture'
+        }
+      }).exec(function(err, blog) {
             if (err)
                 res.send(err);
 
@@ -156,10 +200,13 @@ router.route('/blog')
         });  
     })
 
+
+
+
 router.route('/blog/:blog_id')
 
     .get(function(req, res) {
-        Blog.findById(req.params.blog_id, function(err, blog) {
+        Blog.findById(req.params.blog_id).populate('comments').exec(function(err, blog) {
             if (err)
                 res.send(err);
 
@@ -200,12 +247,14 @@ router.route('/blog/:blog_id')
     })
 
 
+
 router.route('/blog/:blog_id/comment')
     
     .post(function(req, res){
         mongoose.model('Comment').create({
             body: req.body.body,
-            user: req.body.user
+            user: req.user,
+            blog: req.params.blog_id
             
         }, function(err, comment){
             if (err){
@@ -219,6 +268,7 @@ router.route('/blog/:blog_id/comment')
                     } else {
                         blog.comments.push(comment._id);
                         blog.save();
+                        console.log(comment);
                         res.send(comment);
                         }
             })}
@@ -228,20 +278,20 @@ router.route('/blog/:blog_id/comment')
     .get(function(req, res) {
         mongoose.model('Blog').findById({
                         _id: req.params.blog_id
-                    }, function(err, blog){
+                    }).populate({
+                        path: 'comments',
+                        populate: {
+                            path: 'user',
+                            select: 'facebook.name facebook.picture'
+                        }
+                    }).exec(function(err, blog){
                         if(err){
                             res.send(err)
                         } else {
-                            mongoose.model('Comment').find(function(err, comments) {
-                                if (err)
-                                    res.send(err);
-
-                                res.json(comments);
-                            })
+                            res.send(blog);
                         }
-        })
-    
-    })
+                    })
+                })
 
 
 if (process.env.NODE_ENV === 'production') {
@@ -285,6 +335,16 @@ app.use('/api', router);
 
 var port = process.env.PORT || 3000;
 
-app.listen(port);
-console.log('The magic is happening on port ' + port)
-
+app.use(express.static(static_path))
+  .get('/', function (req, res) {
+      res.render('index', {
+          user: req.user,
+          root: static_path
+      });
+  }).listen(process.env.PORT || 3000, function (err) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+  console.log('The magic happens at ' + ':' + port);
+});
