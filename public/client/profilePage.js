@@ -72,6 +72,10 @@ var Twitter = React.createClass({
 
 var Skills = React.createClass({
     
+    handleClick: function() {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+    },
+    
     render: function(){
         var slashStyle = {
             fontWeight: 200
@@ -100,11 +104,6 @@ var Skills = React.createClass({
             color: '#FFF',
             fontWeight: 400
         }
-        
-        $('#backToTop').click(function(){
-            $("html, body").animate({ scrollTop: 0 }, 600);
-            return false;
-         });
         
         return(
             <div id="profileSummary-skillsHolder">
@@ -195,7 +194,7 @@ var Skills = React.createClass({
                                 </div>
                             </div>
                             <div className="spacer-100px"/>
-                            <a id="backToTop"><button className="btn btn-blue ghost"><i className="fa fa-angle-double-up fa-2x"/></button></a>
+                            <button onClick={this.handleClick} className="btn btn-blue ghost"><i className="fa fa-angle-double-up fa-2x"/></button>
                         </div>
                     </div>
                 </div>
