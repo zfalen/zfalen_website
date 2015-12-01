@@ -18,6 +18,10 @@
     margin-bottom: 40px
 }
 
+.spacer-100px{
+    margin-bottom: 100px
+}
+
 .vertical-center {
   min-height: 100%;
   display: flex;
@@ -28,6 +32,25 @@
   min-height: 100%;
   display: flex;
   align-items: top;
+}
+
+
+/*FONT COLORS*/
+
+.white {
+    color: #f9f9f9;
+}
+
+.black {
+    rgb(32, 32, 32);
+}
+
+.gold {
+    color: #ffba6c;
+}
+
+.blue {
+    color: #03a9f4;
 }
 
 
@@ -309,6 +332,7 @@
 
 #profileSummary-twitterHolder{
     position: absolute; 
+    width: 100%;
     z-index: 2; 
     top: 20%;
 }
@@ -317,11 +341,6 @@
     margin-left: -40px
 }
 
-#profileSummary-skillsHolder{
-    position: absolute; 
-    z-index: 2; 
-    top: 20%;
-}
 
 
 .profileSummary-profileText{
@@ -342,7 +361,6 @@
 .profileSummary-twitterDate {
     position: relative;
     float: left;
-    color: #aaa;
     text-align: left;
     font-weight: 800;
 }
@@ -357,7 +375,7 @@
 }
 
 .profileSummary-twitterIcon-active {
-    color: #03A9F4;
+    color: #ffba6c;
 }
 
 .profileSummary-twitterStatusHolder {
@@ -365,50 +383,85 @@
 }
 
 
-#profileSummary-skillsColumn1 {
-    padding-right: 2.5%
+
+#profileSummary-skillsHolder{
+    position: relative; 
+    z-index: 2; 
+    top: -25px;
 }
 
-#profileSummary-skillsColumn2 {
-    padding-left: 2.5%
+#profileSummary-servicesLogoHolder {
+    width: 100%;
+    background-color: rgb(32, 32, 32);
 }
 
-.profileSummary-skillsBarIndicator-right {
-	right: -30px; 
-    color: #fff !important; 
-    position: absolute;
+#profileSummary-servicesLogo {
+    position: relative;
+    top: -271px;
 }
 
-.profileSummary-skillsBarIndicator-left {
-	right: -15px;
-    color: #fff !important; 
-    position: absolute;
+
+#profileSummary-skillsHolder1{
+    top: -175px;
+    position: relative;
 }
 
 .profileSummary-skillsTitle {
-	color: #fff
+	font-weight: 600;
+    letter-spacing: 5px;
 }
 
-.profileSummary-skillsBar {
-	margin-left: 10px; 
-    background-color: rgba(249, 249, 249, .75);
+.profileSummary-skillsText {
+	font-weight: 300;
+    color: #808080;
 }
 
-.profileSummary-skillsBarInner {
-    background-color: #202020;
+.profileSummary-skillsIcon {
+	font-size: 100px;
 }
 
-.profileSummary-skillsBar30 {
-	width: 30%;
+#profileSummary-serviceHolder2 {
+    background-color: #f9f9f9;
+    position: relative;
+    height: 75vh;
 }
 
-.profileSummary-skillsBar25 {
-	width: 25%;
+#profileSummary-skillsHolder2 {
+    position: relative;
+    width: 100%;
+    margin-left: 75px;
+    margin-right: 75px;
 }
 
-.profileSummary-skillsBar15 {
-	width: 15%;
+
+#profileSummary-serviceHolder3 {
+    background-color: rgb(32, 32, 32);
+    position: relative;
+    height: 75vh;
 }
+
+#profileSummary-skillsHolder3 {
+    position: relative;
+    width: 100%;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+
+.btn-blue{
+	color: #FFF;
+    width: 125px !important;
+	background-color: #03a9f4 ;
+    border-color: #03a9f4 ;
+}
+.btn-blue:hover {
+	color: #000;
+	background-color: #03a9f4 ;
+    border-color: #03a9f4 ;
+}
+
+
+
 
 
 /*BLOG PAGE*/
@@ -493,6 +546,8 @@
 	background-color: rgba(249, 249, 249, 1) ;
     border-color: rgba(249, 249, 249, 1) ;
 }
+
+
 
 .ghost{
 	background: transparent;

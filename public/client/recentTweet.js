@@ -14,7 +14,7 @@ var MyTweets = React.createClass({
             
             var asMonth = months[asDate.getMonth()];
             
-            return <h6 className="profileSummary-twitterDate">{asMonth.toUpperCase() + "/" + asDate.getDate() + "/" + asDate.getFullYear()}</h6>
+            return <h6 className="profileSummary-twitterDate gold">{asMonth.toUpperCase() + "/" + asDate.getDate() + "/" + asDate.getFullYear()}</h6>
         });
         
         console.log(tweetDateString);

@@ -29,7 +29,7 @@ var RenderPortfolio = React.createClass({
             color: '#f15922'
         };
         var titlePadding = {
-            paddingTop: 100,
+            paddingTop: 50,
             marginBottom: 200,
         };
         
@@ -48,6 +48,7 @@ var RenderPortfolio = React.createClass({
                 </div>
             
                 <div className='container text-center' style={titlePadding}>
+                    <i className="black fa fa-exclamation-triangle profileSummary-skillsIcon"/>
                     <h1 style={headingStyle}>    COMING SOON    </h1>
                 </div>
         

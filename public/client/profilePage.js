@@ -1,5 +1,7 @@
 var React = require('react');
 
+var PieChart = require('react-simple-pie-chart');
+
 var TweetBox = require('./recentTweet');
 
 
@@ -51,8 +53,7 @@ var Twitter = React.createClass({
         }
         return(
             <div className="container" id='profileSummary-twitterHolder'>
-                <div className="col-md-7 col-md-offset-6">
-                    <div className="col-md-6"><h2 className="profileSummary-sectionTitle"><span style={slashStyle}>//  <span style={atStyle}>@</span></span>Zfalen </h2></div>
+                <div className="col-md-8 col-md-offset-2">
                     <div className="row vertical-center profileSummary-twitterStatusHolder">
                         <div className="col-md-4">
                             <a href="https://twitter.com/zfalen" target="_blank" onMouseEnter={this.handleMouseEnter.bind(this, 'hoverClass')} onMouseLeave={this.handleMouseLeave.bind(this, 'hoverClass')}>
@@ -75,53 +76,137 @@ var Skills = React.createClass({
         var slashStyle = {
             fontWeight: 200
         }
+        
+        var padLeft = {
+            paddingLeft: 45,
+        }
+        
+        var xlStyle = {
+            fontSize: 35,
+            textAlign: 'left',
+            paddingLeft: 25,
+            color: '#FFF'
+        }
+        
+        var bigStyle = {
+            fontSize: 30,
+            textAlign: 'left',
+            color: '#FFF'
+        }
+        
+        var medStyle = {
+            fontSize: 20,
+            textAlign: 'left',
+            color: '#FFF',
+            fontWeight: 400
+        }
+        
+        $('#backToTop').click(function(){
+            $("html, body").animate({ scrollTop: 0 }, 600);
+            return false;
+         });
+        
         return(
-            <div className="container" id="profileSummary-skillsHolder">
-                <div className="col-md-6 col-md-offset-6"><h2 className="profileSummary-sectionTitle"><span style={slashStyle}>// </span>EXPERIENCE </h2></div>
-                <div className="col-md-3 col-md-offset-6" id="profileSummary-skillsColumn1">
-                    <div>
-                        <h6 className="profileSummary-skillsTitle">DIGITAL MARKETING</h6>
-                        <div className="progress profileSummary-skillsBar">
-                          <div className="progress-bar profileSummary-skillsBarInner profileSummary-skillsBar30" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                            <span className="sr-only">30% Complete</span>
-                          </div><p className="profileSummary-skillsBarIndicator-left">30%</p>
-                        </div>
+            <div id="profileSummary-skillsHolder">
+            
+                <div id="profileSummary-servicesLogoHolder">
+                    <img src="../img/services_graphic.svg" id="profileSummary-servicesLogo"/>
+                    
+                    <div className="text-center white" id="profileSummary-skillsHolder1">
+                        <i className="fa fa-cloud profileSummary-skillsIcon"/>
+                        <h2 className="profileSummary-skillsTitle">DIGITAL STRATEGY</h2>
+                        <p className="profileSummary-skillsText">Lorem ipsum dolorem set ep sigma sig hominem.<br/>Vos tantum hominis.<br/>Memento mori.</p><br/>
+                        <h2 className="blue">· · ·</h2>
+                    
                     </div>
-
-                    <div className="spacer-40px"></div>
-
-                    <div>
-                        <h6 className="profileSummary-skillsTitle">VIDEO / PHOTO / MOTION </h6>
-                        <div className="progress profileSummary-skillsBar">
-                          <div className="progress-bar profileSummary-skillsBarInner profileSummary-skillsBar30 " role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
-                            <span className="sr-only">20% Complete</span>
-                          </div><p className="profileSummary-skillsBarIndicator-left">30%</p>
-                        </div>
-                    </div> 
-
                 </div>
-                <div className="col-md-3" id="profileSummary-skillsColumn2">
-                    <div>
-                        <h6 className="profileSummary-skillsTitle"> WEB </h6>
-                        <div className="progress profileSummary-skillsBar">
-                          <div className="progress-bar profileSummary-skillsBarInner profileSummary-skillsBar25" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                            <span className="sr-only">25% Complete</span>
-                          </div><p className="profileSummary-skillsBarIndicator-right">25%</p>
-                        </div>
-                    </div>
-
-                    <div className="spacer-40px"></div>
-
-                    <div>
-                        <h6 className="profileSummary-skillsTitle">DESIGN </h6>
-                        <div className="progress profileSummary-skillsBar">
-                          <div className="progress-bar profileSummary-skillsBarInner profileSummary-skillsBar15" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100">
-                            <span className="sr-only">15% Complete</span>
-                          </div><p className="profileSummary-skillsBarIndicator-right">15%</p>
+            
+                <div id="profileSummary-serviceHolder2">
+                    
+                    <div className="vertical-center">
+                        <div className="text-center black" id="profileSummary-skillsHolder2">
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <i className="fa fa-film profileSummary-skillsIcon"/>
+                                    <h3 className="profileSummary-skillsTitle">VIDEOGRAPHY</h3>
+                                    <p className="profileSummary-skillsText">Lorem ipsum dolorem set ep sigma sig hominem.<br/>Vos tantum hominis.<br/>Memento mori.</p>
+                                </div>
+                                <div className="col-md-4">
+                                    <i className="fa fa-camera-retro profileSummary-skillsIcon"/>
+                                    <h3 className="profileSummary-skillsTitle">PHOTOGRAPHY</h3>
+                                    <p className="profileSummary-skillsText">Lorem ipsum dolorem set ep sigma sig hominem.<br/>Vos tantum hominis.<br/>Memento mori.</p>
+                                </div>
+                                <div className="col-md-4">
+                                    <i className="fa fa-spinner profileSummary-skillsIcon"/>
+                                    <h3 className="profileSummary-skillsTitle">MOTION DESIGN</h3>
+                                    <p className="profileSummary-skillsText">Lorem ipsum dolorem set ep sigma sig hominem.<br/>Vos tantum hominis.<br/>Memento mori.</p>
+                                </div>
+                            </div>
+                            <div className="spacer-40px"></div>
+                            <h2 className="blue">· · ·</h2>
                         </div>
                     </div>
                 </div>
+            
+                <div id="profileSummary-serviceHolder3">
+                    
+                    <div className="vertical-center">
+                        <div className="text-center white" id="profileSummary-skillsHolder3">
+                            <div className="col-md-12">
+                                <i className="fa fa-tablet profileSummary-skillsIcon"/>
+                                <h3 className="profileSummary-skillsTitle">UI DESIGN</h3>
+                                <p className="profileSummary-skillsText">Lorem ipsum dolorem set ep sigma sig hominem.<br/>Vos tantum hominis.<br/>Memento mori.</p><br/>
+                                <h2 className="blue">· · ·</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+                <div id="profileSummary-serviceHolder2">
+                    
+                    <div className="vertical-center">
+                        <div className="text-center black" id="profileSummary-skillsHolder2">
+                            <div className="col-md-12">
+                                <i className="fa fa-wordpress profileSummary-skillsIcon"/>
+                                <h3 className="profileSummary-skillsTitle">WORDPRESS DEVELOPMENT</h3>
+                                <p className="profileSummary-skillsText">Lorem ipsum dolorem set ep sigma sig hominem.<br/>Vos tantum hominis.<br/>Memento mori.</p><br/>
+                                <h2 className="blue">· · ·</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            
+                <div id="profileSummary-serviceHolder3">
+                    
+                    <div className="vertical-center">
+                        <div className="text-center white" id="profileSummary-skillsHolder3">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <i className="fa fa-pencil profileSummary-skillsIcon"/>
+                                    <h3 className="profileSummary-skillsTitle">GRAPHIC DESIGN</h3>
+                                    <p className="profileSummary-skillsText">Lorem ipsum dolorem set ep sigma sig hominem.<br/>Vos tantum hominis.<br/>Memento mori.</p>
+                                </div>
+                                <div className="col-md-6">
+                                    <i className="fa fa-file-text profileSummary-skillsIcon"/>
+                                    <h3 className="profileSummary-skillsTitle">COPYWRITING</h3>
+                                    <p className="profileSummary-skillsText">Lorem ipsum dolorem set ep sigma sig hominem.<br/>Vos tantum hominis.<br/>Memento mori.</p>
+                                </div>
+                            </div>
+                            <div className="spacer-100px"/>
+                            <a id="backToTop"><button className="btn btn-blue ghost"><i className="fa fa-angle-double-up fa-2x"/></button></a>
+                        </div>
+                    </div>
+                </div>
+            
+
+
+
+
+                
             </div>
+            
         )
     }
 });
@@ -156,7 +241,7 @@ var ControlBar = React.createClass({
 var MiniProfile = React.createClass({
     
     getInitialState: function(){
-        return({showProfile: true, ProfileClass: 'profileSummary-controlBtn-active',  showTwitter: false, TwitterClass: 'profileSummary-controlBtn-inactive', showSkills: false, SkillsClass: 'profileSummary-controlBtn-inactive', activeNow: 'Profile'})
+        return({showHeadshot: true, showProfile: true, ProfileClass: 'profileSummary-controlBtn-active',  showTwitter: false, TwitterClass: 'profileSummary-controlBtn-inactive', showSkills: false, SkillsClass: 'profileSummary-controlBtn-inactive', activeNow: 'Profile'})
     },
     
     handleClick: function(stateToChange){
@@ -164,6 +249,12 @@ var MiniProfile = React.createClass({
         var showState = "show" + stateToChange;
         var activeState = "show" + this.state.activeNow;
         var activeClass = this.state.activeNow + "Class";
+        
+        if (stateToChange === "Profile"){
+            this.setState({showHeadshot: true})
+        } else {
+            this.setState({showHeadshot: false})
+        }
         
         if (this.state.stateToChange != this.state.activeNow){
                 this.setState({[activeState]: false})
@@ -176,21 +267,22 @@ var MiniProfile = React.createClass({
         } else {
             return
         };
-        console.log(this.state.activeNow);
+        
     },
     
     render: function(){
         var showProfile = (this.state.showProfile) ? <Profile/> : null;
         var showTwitter = (this.state.showTwitter) ? <Twitter/> : null;
         var showSkills = (this.state.showSkills) ? <Skills/> : null;
+        var showHeadshot = (this.state.showHeadshot) ? <img src="img/headshot1.jpg" className="img-responsive thumbnail" id="profileSummary-headshot"/> : null;
         return(
+        <div>
         <div id="profileSummary-holder">
-            <img src="img/headshot1.jpg" className="img-responsive thumbnail" id="profileSummary-headshot"></img>
+            {showHeadshot}
             <ControlBar handleClick={this.handleClick} profileClass={this.state.ProfileClass} twitterClass={this.state.TwitterClass} skillsClass={this.state.SkillsClass}/>
             
             {showProfile}
             {showTwitter}
-            {showSkills}
     
             <div id="profileSummary-backgroundHolder-outer">
                 <div id="profileSummary-backgroundHolder-inner">
@@ -200,6 +292,8 @@ var MiniProfile = React.createClass({
                     <div id="profileSummary-backgroundHolder-img"></div>
                 </div>
             </div>
+        </div>
+        {showSkills}
         </div>
         )
     }
