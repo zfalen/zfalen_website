@@ -20,6 +20,8 @@ var Twit = require('twit');
 var axios = require('axios');
 var _ = require('lodash');
 
+var Instagram = require('instagram-node-lib');
+
 
 var mongoose = require('mongoose');
 var uriUtil = require('mongodb-uri');
@@ -94,6 +96,39 @@ app.use('/api/handle/:twitterHandle', fetchTweets);
 
 
 
+// INSTAGRAM API
+// ===============================================
+
+var Instagram = require("instagram-node-lib");
+
+Instagram.set('client_id', process.env.INSTAGRAM_CLIENT_ID);
+Instagram.set('client_secret', process.env.INSTAGRAM_CLIENT_SECRET);
+Instagram.set('access_token', process.env.INSTAGRAM_ACCESS_TOKEN);
+
+var myInstaId = 42392279;
+
+
+var fetchInstaInfo = function(req, res){
+    Instagram.users.info({ 
+        user_id: myInstaId,
+        complete: function(data){
+            res.send(data)
+        }
+    });
+};
+
+var fetchGrams = function(req, res){
+    Instagram.users.recent({ 
+        user_id: myInstaId,
+        count: 9,
+        complete: function(data){
+            res.send(data)
+        }
+    });
+};
+
+app.use('/api/instaInfo', fetchInstaInfo);
+app.use('/api/grams', fetchGrams);
 
 // ROUTES FOR OUR API
 // =============================================================================

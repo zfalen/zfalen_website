@@ -51,7 +51,7 @@ var TweetBox = React.createClass({
         });
     },
     
-    componentDidMount: function(){
+    componentWillMount: function(){
         this.loadTweetsFromServer();
     },
     

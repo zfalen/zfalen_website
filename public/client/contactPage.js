@@ -100,7 +100,7 @@ var RenderContact = React.createClass({
             <div className="blogTitle-separator center-block"></div>
             </div><br/>
             
-            <div className="row">
+            <div className="row" id="contact-topSection">
             <div className="col-md-5">
             
                         <div className="col-md-12">

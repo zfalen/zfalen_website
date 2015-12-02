@@ -53,6 +53,7 @@
     "express-session": "^1.11.3",
     "file-loader": "^0.8.4",
     "flux": "^2.0.3",
+    "instagram-node-lib": "^0.1.1",
     "lodash": "^3.10.1",
     "method-override": "^2.3.5",
     "mongodb": "^2.0.46",

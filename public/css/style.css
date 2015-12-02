@@ -264,6 +264,7 @@
     background:  -moz-linear-gradient(-45deg, rgba(3,169,244,0.65) 42%, rgba(3,140,240,0.85) 78%, rgba(3,128,238,0.88) 94%, rgba(3,123,237,0.9) 100%);
     background: -webkit-linear-gradient(-45deg, rgba(3,169,244,0.65) 42%,rgba(3,140,240,0.85) 78%,rgba(3,128,238,0.88) 94%,rgba(3,123,237,0.9) 100%);
     background: linear-gradient(135deg, rgba(3,169,244,0.65) 42%,rgba(3,140,240,0.85) 78%,rgba(3,128,238,0.88) 94%,rgba(3,123,237,0.9) 100%);
+    box-shadow: rgba(32,32,32,.9) 20px 3px 5px;
 }
 
 #profileSummary-backgroundHolder-img {
@@ -598,6 +599,12 @@
 
 #contact-message {
     height: 100px
+}
+
+#contact-topSection {
+    z-index: 1;
+    position: relative;
+    box-shadow: rgba(32,32,32,.9) -10px 3px 5px;
 }
 
 

@@ -70,6 +70,81 @@ var Twitter = React.createClass({
     }
 });
 
+var GramBoxes = React.createClass({
+    
+    render: function(){
+        var gramBoxes = this.props.data.map(function(gram){
+            
+            var holderStyle = {
+                display: 'block',
+                position: 'relative',
+                backgroundImage: 'url(' + gram.images.standard_resolution.url + ')',
+                backgroundSize: '126%',
+                backgroundPosition: '50% 40%',
+                backgroundRepeat: 'no-repeat',
+                height: 400
+            }
+            
+            return <div className="col-md-4" style={holderStyle}/>
+        });
+        
+        return(
+            <div>
+            {gramBoxes}
+            </div>
+        )
+    }
+})
+
+var Grams = React.createClass({
+   
+    getInitialState: function(){
+        return({data: []})
+    },
+    
+    loadGramsFromServer: function(){
+        $.ajax({
+            url: '/api/grams',
+            dataType: 'json',
+            cache: false,
+            success: function(data){
+                this.setState({data: data}); 
+                console.log('the grams are golden!');
+            }.bind(this),
+            error: function(xhr, status, err){
+                console.error(this.props.url, status, err.toString)
+            }.bind(this)
+        });
+    },
+    
+    componentDidMount: function(){
+        this.loadGramsFromServer();
+    },
+    
+    render: function(){
+        
+        var wrapperStyle = {
+            padding: 0
+        }
+        
+        var topStyle = {
+            width: '100%',
+            height: 1,
+            backgroundColor: '#202020'
+        }
+        
+        
+        return(
+            <div className="container-fluid" style={wrapperStyle}>
+                <GramBoxes data={this.state.data}/>
+            </div>
+        )
+    }
+    
+    
+});
+
+
 var Skills = React.createClass({
     
     handleClick: function() {
@@ -240,7 +315,7 @@ var ControlBar = React.createClass({
 var MiniProfile = React.createClass({
     
     getInitialState: function(){
-        return({showHeadshot: true, showProfile: true, ProfileClass: 'profileSummary-controlBtn-active',  showTwitter: false, TwitterClass: 'profileSummary-controlBtn-inactive', showSkills: false, SkillsClass: 'profileSummary-controlBtn-inactive', activeNow: 'Profile'})
+        return({showHeadshot: true, showProfile: true, ProfileClass: 'profileSummary-controlBtn-active',  showTwitter: false, TwitterClass: 'profileSummary-controlBtn-inactive', showGrams: false, showSkills: false, SkillsClass: 'profileSummary-controlBtn-inactive', activeNow: 'Profile'})
     },
     
     handleClick: function(stateToChange){
@@ -253,6 +328,12 @@ var MiniProfile = React.createClass({
             this.setState({showHeadshot: true})
         } else {
             this.setState({showHeadshot: false})
+        }
+        
+        if (stateToChange === "Twitter"){
+            this.setState({showGrams: true})
+        } else {
+            this.setState({showGrams: false})
         }
         
         if (this.state.stateToChange != this.state.activeNow){
@@ -271,29 +352,31 @@ var MiniProfile = React.createClass({
     
     render: function(){
         var showProfile = (this.state.showProfile) ? <Profile/> : null;
-        var showTwitter = (this.state.showTwitter) ? <Twitter/> : null;
-        var showSkills = (this.state.showSkills) ? <Skills/> : null;
         var showHeadshot = (this.state.showHeadshot) ? <img src="img/headshot1.jpg" className="img-responsive thumbnail" id="profileSummary-headshot"/> : null;
+        var showTwitter = (this.state.showTwitter) ? <Twitter/> : null;
+        var showGrams = (this.state.showGrams) ? <Grams/> : null;
+        var showSkills = (this.state.showSkills) ? <Skills/> : null;
         return(
-        <div>
-        <div id="profileSummary-holder">
-            {showHeadshot}
-            <ControlBar handleClick={this.handleClick} profileClass={this.state.ProfileClass} twitterClass={this.state.TwitterClass} skillsClass={this.state.SkillsClass}/>
-            
-            {showProfile}
-            {showTwitter}
-    
-            <div id="profileSummary-backgroundHolder-outer">
-                <div id="profileSummary-backgroundHolder-inner">
-                    
-                    <div id="profileSummary-backgroundHolder-overlay"></div>
+            <div>
+            <div id="profileSummary-holder">
+                {showHeadshot}
+                <ControlBar handleClick={this.handleClick} profileClass={this.state.ProfileClass} twitterClass={this.state.TwitterClass} skillsClass={this.state.SkillsClass}/>
 
-                    <div id="profileSummary-backgroundHolder-img"></div>
+                {showProfile}
+                {showTwitter}
+
+                <div id="profileSummary-backgroundHolder-outer">
+                    <div id="profileSummary-backgroundHolder-inner">
+
+                        <div id="profileSummary-backgroundHolder-overlay"></div>
+
+                        <div id="profileSummary-backgroundHolder-img"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        {showSkills}
-        </div>
+            {showSkills}
+            {showGrams}
+            </div>
         )
     }
 });
