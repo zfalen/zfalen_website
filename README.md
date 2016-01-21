@@ -7,6 +7,7 @@
 - Instagram API
 - React-GMAPS library
 - contact form using NodeMailer
+- Webpack for bundling
 
 
 #### Stack
